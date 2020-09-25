@@ -52,34 +52,96 @@
   height: 100%;
   width: 75%;
   margin: auto;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  display: grid;
+  grid-template-columns: 5% 30% 30% 30% 5%;
+  grid-template-rows: 5% 10% 25% 25% 30% 5%;
+  /* padding-top: 30px; */
+}
+
+.autolog-logo {
+  filter: invert(100%);
+  margin: 0px auto;
+  width: 250px;
+  padding-top: 10px;
+  color: white;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.landing-text-container {
+  /* vertical-align: top; */
+  padding: 25px;
+  margin: 0px auto;
+  display: inline-block;
+  width: 500px;
+  margin-bottom: 20px;
+  grid-column-start: 2;
+  grid-column-end: 5;
   text-align: center;
 }
 
-.btn-signup {
+.landing-text-one {
+  vertical-align: center;
+  grid-row: 3;
+  margin-top: 20px;
+}
+
+.landing-text-two {
+  vertical-align: center;
+  grid-row: 4;
+}
+
+.header-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.intro-text {
+  display: inline-block;
+  vertical-align: center;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
+.intro-text > p {
+  font-size: 1em;
+}
+
+.buttons {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row: 5;
+  margin: -15px auto 0 auto;
+  /* display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%; */
+}
+
+.landing-btn {
   transform: translateZ(.1px);
   position: relative;
   z-index: 10;
   display: inline-block;
   border-radius: 4px;
-  background-color: #4CD066;
   border: none;
-  color: black;
   text-align: center;
   font-family: 'Arvo', serif;
   font-size: 20px;
-  padding: 20px;
+  padding: 10px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
   width: 200px;
   text-decoration: none;
+  /* grid-row: 1; */
 }
 
-.btn-signup span {
+.landing-btn span {
   color: black;
   cursor: pointer;
   display: inline-block;
@@ -87,7 +149,7 @@
   transition: 0.5s;
 }
 
-.btn-signup span:after {
+.landing-btn span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -96,13 +158,36 @@
   transition: 0.5s;
 }
 
-.btn-signup:hover span {
+.landing-btn:hover span {
   padding-right: 25px;
 }
 
-.btn-signup:hover span:after {
+.landing-btn:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.have-acct-text {
+  font-family: 'Lato', serif;
+  color: white;
+  margin: 10px 0 20px 0;
+}
+
+.have-acct-text-link {
+  color: #4CD066;
+  font-family: 'Lato', serif;
+  font-weight: 900; 
+  /* grid-row: 2; */
+}
+
+.btn-signup {
+  color: black;
+  background-color: #4CD066;
+}
+
+.btn-demo {
+  background-color: #1026CB;
+  color: white;
 }
 
 /* main {
