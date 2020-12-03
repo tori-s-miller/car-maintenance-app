@@ -1,47 +1,47 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-//import Navbar from './components/layout/Navbar';
+import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
-//import Login from './components/auth/Login';
-//import LoginDemo from './components/auth/LoginDemo';
-//import Alert from './components/layout/Alert';
-//import Dashboard from './components/dashboard/Dashboard';
-//import PrivateRoute from './components/routing/PrivateRoute';
+import Login from './components/auth/Login';
+import LoginDemo from './components/auth/LoginDemo';
+import Alert from './components/layout/Alert';
+import MaintenanceOptions from './components/maintenance/MaintenanceOptions';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 // Redux
 // Provider combines React and Redux
 import { Provider } from 'react-redux';
 import store from './store';
-// import { loadUser } from './actions/auth';
-// import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
-// if(localStorage.token) {
-//   setAuthToken(localStorage.token);
-// }
+if(localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
-  // useEffect(() => {
-  //   store.dispatch(loadUser());
-  //   // When the state updates, useEffect will keep running unless we add a second parameter with empty brackets
-  // }, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+    // When the state updates, useEffect will keep running unless we add a second parameter with empty brackets
+  }, []);
 
   return (
     <Provider store={store}>
     {/* fragment is a ghost element that won't show up in the dom */}
     <Router>
       <Fragment>
-        {/* <Navbar /> */}
+        <Navbar />
         <Route exact path="/" component={Landing} />
         <section className="container">
-          {/* <Alert /> */}
+          <Alert />
           <Switch>
             <Route exact path="/register" component={Register} />
-            {/* <Route exact path="/login" component={Login} /> */}
-            {/* <Route exact path="/login-demo" component={LoginDemo} /> */}
-            {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/login-demo" component={LoginDemo} />
+            <PrivateRoute exact path="/maintenance-options" component={MaintenanceOptions} />
           </Switch>
         </section>
       </Fragment>

@@ -39,6 +39,8 @@ export default function(state = initialState, action) {
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT:
+        // case ACCOUNT_DELETED:
+            console.log('REGISTER_FAIL, AUTH_ERROR, LOGIN_FAIL, LOGOUT ran in auth reducer')
             //localStorage.removeItem('token');
             return {
                 ...state,

@@ -27,12 +27,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         if(password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else {
+            console.log('formData:', formData)
             register({ name, email, password });
         }
     }
 
     if(isAuthenticated) {
-        return <Redirect to="/dashboard" />
+        return <Redirect to="/maintenance-options" />
     }
 
     return (
@@ -40,15 +41,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <h1 className="large text-primary header-h1">Sign Up</h1>
             <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
-            <div className="form-group">
-                <input 
-                    type="text" 
-                    placeholder="Name" 
-                    name="name" 
-                    value={name} 
-                    onChange={e => onChange(e)}
-                />
-            </div>
             <div className="form-group">
                 <input type="email" placeholder="Email Address" name="email" value={email} 
                     onChange={e => onChange(e)} />

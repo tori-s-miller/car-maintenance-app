@@ -8,7 +8,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    // CLEAR_PROFILE
+    CLEAR_PROFILE
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -55,6 +55,7 @@ export const register = ({ name, email, password }) => async dispatch => {
         const errors = err.response.data.errors;
 
         if(errors) {
+            console.log('there were fucking errors when register dispatched')
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }
 
@@ -66,6 +67,9 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 // Login User
 export const login = (email, password) => async dispatch => {
+    console.log('auth.js login ran')
+    console.log('auth.js login email:', email)
+    console.log('auth.js login password:', password)
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -75,7 +79,12 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password });
 
     try {
+        console.log('try ran')
+        console.log('try config:', config)
+        console.log('try body:', body)
         const res = await axios.post('/api/auth', body, config);
+
+        console.log('login res:', res)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -84,6 +93,7 @@ export const login = (email, password) => async dispatch => {
         localStorage.setItem('token', res.data.token);
         dispatch(loadUser());
     } catch (err) {
+        console.log('login err:', err)
         const errors = err.response.data.errors;
 
         if(errors) {
@@ -98,6 +108,6 @@ export const login = (email, password) => async dispatch => {
 
 // Logout / Clear Profile
 export const logout = () => dispatch => {
-    // dispatch({ type: CLEAR_PROFILE });
+    dispatch({ type: CLEAR_PROFILE });
     dispatch({ type: LOGOUT });
 }

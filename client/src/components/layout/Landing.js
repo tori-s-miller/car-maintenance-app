@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import logo from './img/Logo.png';
 
 const Landing = ({ isAuthenticated }) => {
-  if(isAuthenticated) {
-    return <Redirect to='/dashboard' />
-  }
+  // if(isAuthenticated) {
+  //   return <Redirect to='/maintenance-options' />
+  // }
 
     return (
     <section className="landing">
