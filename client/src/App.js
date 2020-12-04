@@ -33,7 +33,7 @@ const App = () => {
     {/* fragment is a ghost element that won't show up in the dom */}
     <Router>
       <Fragment>
-        <Navbar />
+        {/* <Navbar /> */}
         <Route exact path="/" component={Landing} />
         <section className="container">
           <Alert />
