@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Navbar from '../layout/Navbar';
 
 export default function MaintenanceOptions() {
     return (
-        <div>
-            Maintenance Options
-        </div>
+        <Fragment>
+            <Navbar />
+            <div>
+                Maintenance Options
+            </div>
+        </Fragment>
+        
     )
 }

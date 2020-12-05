@@ -32,6 +32,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         }
     }
 
+    console.log('isAuthenticated:', isAuthenticated)
+
     if(isAuthenticated) {
         return <Redirect to="/maintenance-options" />
     }

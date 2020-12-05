@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import car from '../img/car-illustration.svg'
 
 // since the action is a prop, we're going to destructure it so we don't have to do props.login
 const Login = ({ login, isAuthenticated }) => {
@@ -26,36 +27,44 @@ const Login = ({ login, isAuthenticated }) => {
     };
 
     // Redirect if logged in
-    if(isAuthenticated) {
-        console.log('LoginDemo isAuthenticated')
-        return <Redirect to="/maintenance-options" />
-    }
+    // if(isAuthenticated) {
+    //     console.log('LoginDemo isAuthenticated')
+    //     return <Redirect to="/maintenance-options" />
+    // }
 
     return (
         <Fragment>
-            {console.log('Login Demo page loaded')}
-            <h1 className="large text-primary header-h1">Sign In</h1>
-            <p className="lead"><i className="fas fa-user"></i> Sign Into Demo Account</p>
-            <form className="form" onSubmit={e => onSubmit(e)}>
-            <div className="form-group">
-                <input type="email" placeholder="Email Address" name="email" value={email} 
-                    onChange={e => onChange(e)} required />
+        <section className="landing">
+            <div className="col-1">
+                <h1>AutoLog</h1>
+                <h2>Log Into Demo Account</h2>
+                <form className="form" onSubmit={e => onSubmit(e)}>
+                <div className="form-group">
+                    <label for="email" className="email-label">Email</label>
+                    <input type="email" placeholder="Email Address" name="email" value={email} 
+                        onChange={e => onChange(e)} required />
+                </div>
+                <div className="form-group">
+                    <label for="password" className="password-label">Password</label>
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    minLength="6"
+                    value={password} 
+                    onChange={e => onChange(e)}
+                    />
+                </div>
+                <input type="submit" className="demo-btn" value="Log In" />
+                </form>
+                <p className="have-acct-text">Already have an account? <Link to="/login" className="have-acct-text-link">Login.</Link></p>
+                {/* <Link to="/register" className="landing-btn btn-signup"><span>Log In</span></Link>
+                <p className="have-acct-text">Already have an account? <Link to="/login" className="have-acct-text-link">Login.</Link></p> */}
             </div>
-            <div className="form-group">
-                <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                minLength="6"
-                value={password} 
-                onChange={e => onChange(e)}
-                />
+            <div className="col-2">
+                <img src={car} className="car" />
             </div>
-            <input type="submit" className="btn btn-primary" value="Login" />
-            </form>
-            <p className="my-1">
-            Don't have an account? <Link to='/register'>Sign Up</Link>
-            </p>
+        </section>
         </Fragment>
     );
 };

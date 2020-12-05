@@ -44,7 +44,7 @@ html {
   color: #fff;
 }
 
-/* LANDING PAGE */
+/* LANDING PAGE, SIGN UP, LOG IN */
 .landing {
   display: grid;
   grid-template-columns: 15% 17.5% 17.5% 17.5% 17.5% 15%;
@@ -74,7 +74,7 @@ html {
   font-weight: 700;
   font-size: 3em;
   color: #008CC5;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .col-1 > h2 {
@@ -87,7 +87,7 @@ html {
   margin-bottom: 30px;
 }
 
-.landing-btn {
+.landing-btn, .demo-btn {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #fff;
@@ -98,6 +98,12 @@ html {
   border-radius: 3px;
 }
 
+.demo-btn {
+  border: none;
+  font-size: 1em;
+  margin-top: 20px;
+}
+
 .btn-signup {
   margin-right: 20px;
 }
@@ -105,7 +111,7 @@ html {
 .btn-demo {
   color: #008CC5;
   box-shadow: 0px 0px 0px 2px #008CC5 inset;
-  background-color: rgba(255, 255, 255, 0)
+  background-color: rgba(255, 255, 255, 0);
 }
 
 /* .landing-btn {
@@ -170,6 +176,27 @@ html {
 .car {
   width: 100%;
   margin-top: 50px;
+}
+
+label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #384669;
+  display: block;
+}
+
+.email-label {
+  margin-bottom: 5px;
+}
+
+.password-label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+input {
+  border: 1px solid #667EB9;
 }
 
 @media(max-width: 1000px) {
