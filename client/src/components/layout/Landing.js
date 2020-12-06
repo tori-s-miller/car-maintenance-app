@@ -6,9 +6,9 @@ import car from '../img/car-illustration.svg';
 
 const Landing = ({ isAuthenticated }) => {
   console.log('isAuthenticated:', isAuthenticated)
-  // if(isAuthenticated) {
-  //   return <Redirect to='/maintenance-options' />
-  // }
+  if(isAuthenticated) {
+    return <Redirect to='/maintenance-options' />
+  }
 
     return (
     <section className="landing">

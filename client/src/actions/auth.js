@@ -15,6 +15,7 @@ import setAuthToken from '../utils/setAuthToken';
 // Load User
 export const loadUser = () => async dispatch => {
     // check local storage
+    console.log('loadUser localStorage:', localStorage)
     if(localStorage.token) {
         setAuthToken(localStorage.token);
     }
@@ -44,6 +45,8 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     try {
         const res = await axios.post('/api/users', body, config);
+        console.log('body:', body)
+        console.log('res:', res)
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -53,6 +56,7 @@ export const register = ({ name, email, password }) => async dispatch => {
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
+        console.log('FUCKING err:', err)
 
         if(errors) {
             console.log('there were fucking errors when register dispatched')

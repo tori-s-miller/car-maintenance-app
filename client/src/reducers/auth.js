@@ -43,7 +43,7 @@ export default function(state = initialState, action) {
         case LOGOUT:
         // case ACCOUNT_DELETED:
             console.log('REGISTER_FAIL, AUTH_ERROR, LOGIN_FAIL, LOGOUT ran in auth reducer')
-            //localStorage.removeItem('token');
+            localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,

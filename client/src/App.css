@@ -52,7 +52,6 @@ html {
 }
 
 .col-1 {
-  border: 1px solid red;
   grid-row-start: 2;
   grid-row-end: 6;
   grid-column-start: 2;
@@ -61,7 +60,6 @@ html {
 }
 
 .col-2 {
-  border: 1px solid orange;
   grid-row-start: 2;
   grid-row-end: 6;
   grid-column-start: 4;
@@ -82,12 +80,11 @@ html {
   font-weight: 400;
   font-size: 1.3em;
   color: #384669;
-  border: 2px solid green;
   width: 325px;
   margin-bottom: 30px;
 }
 
-.landing-btn, .demo-btn {
+.landing-btn, .form-btn {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #fff;
@@ -98,7 +95,7 @@ html {
   border-radius: 3px;
 }
 
-.demo-btn {
+.form-btn {
   border: none;
   font-size: 1em;
   margin-top: 20px;
@@ -191,7 +188,7 @@ label {
 }
 
 .password-label {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 5px;
 }
 
@@ -220,7 +217,6 @@ input {
 
   @media(max-width: 768px) {
     .landing {
-      border: 3px solid blue;
       display: grid;
       grid-template-columns: 20% 20% 20% 20% 20%;
       grid-template-rows: 10% 20% 20% 20% 20% 10%;
@@ -245,11 +241,15 @@ input {
     .col-1 > h2 {
       width: 300px;
     }
+
+    .car {
+      width: 100%;
+      padding: 0;
+    }
   }
 
   @media(max-width: 500px) {
     .landing {
-      border: 3px solid yellow;
       grid-template-columns: 5% 30% 30% 30% 5%;
     }
   }

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import car from '../img/car-illustration.svg';
 
 // since the action is a prop, we're going to destructure it so we don't have to do props.login
 const Login = ({ login, isAuthenticated }) => {
@@ -32,28 +33,35 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <h1 className="large text-primary header-h1">Sign In</h1>
-            <p className="lead"><i className="fas fa-user"></i> Sign Into Your Account</p>
-            <form className="form" onSubmit={e => onSubmit(e)}>
-            <div className="form-group">
-                <input type="email" placeholder="Email Address" name="email" value={email} 
-                    onChange={e => onChange(e)} required />
+        <section className="landing">
+            <div className="col-1">
+                <h1>AutoLog</h1>
+                <h2>Log Into Your Account</h2>
+                <form className="form" onSubmit={e => onSubmit(e)}>
+                <div className="form-group">
+                    <label for="email" className="email-label">Email</label>
+                    <input type="email" placeholder="Email Address" name="email" value={email} 
+                        onChange={e => onChange(e)} required />
+                </div>
+                <div className="form-group">
+                    <label for="password" className="password-label">Password</label>
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    minLength="6"
+                    value={password} 
+                    onChange={e => onChange(e)}
+                    />
+                </div>
+                <input type="submit" className="form-btn" value="Log In" />
+                </form>
+                <p className="have-acct-text">Don't have an account? <Link to='/register' className="have-acct-text-link">Sign up.</Link></p>
             </div>
-            <div className="form-group">
-                <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                minLength="6"
-                value={password} 
-                onChange={e => onChange(e)}
-                />
+            <div className="col-2">
+                <img src={car} className="car" />
             </div>
-            <input type="submit" className="btn btn-primary" value="Login" />
-            </form>
-            <p className="my-1">
-            Don't have an account? <Link to='/register'>Sign Up</Link>
-            </p>
+        </section>
         </Fragment>
     );
 };

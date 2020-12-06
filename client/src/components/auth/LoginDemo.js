@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-import car from '../img/car-illustration.svg'
+import car from '../img/car-illustration.svg';
 
 // since the action is a prop, we're going to destructure it so we don't have to do props.login
 const Login = ({ login, isAuthenticated }) => {
@@ -27,10 +27,10 @@ const Login = ({ login, isAuthenticated }) => {
     };
 
     // Redirect if logged in
-    // if(isAuthenticated) {
-    //     console.log('LoginDemo isAuthenticated')
-    //     return <Redirect to="/maintenance-options" />
-    // }
+    if(isAuthenticated) {
+        console.log('LoginDemo isAuthenticated')
+        return <Redirect to="/maintenance-options" />
+    }
 
     return (
         <Fragment>
@@ -55,11 +55,9 @@ const Login = ({ login, isAuthenticated }) => {
                     onChange={e => onChange(e)}
                     />
                 </div>
-                <input type="submit" className="demo-btn" value="Log In" />
+                <input type="submit" className="form-btn" value="Log In" />
                 </form>
-                <p className="have-acct-text">Already have an account? <Link to="/login" className="have-acct-text-link">Login.</Link></p>
-                {/* <Link to="/register" className="landing-btn btn-signup"><span>Log In</span></Link>
-                <p className="have-acct-text">Already have an account? <Link to="/login" className="have-acct-text-link">Login.</Link></p> */}
+                <p className="have-acct-text">Want to create your own account? <Link to='/register' className="have-acct-text-link">Sign up.</Link></p>
             </div>
             <div className="col-2">
                 <img src={car} className="car" />

@@ -11,9 +11,9 @@ const User = require('../../models/User');
 // @desc    Register user
 // @access  Public
 router.post('/', [
-    check('name', 'Name is required')
-        .not()
-        .isEmpty(),
+    // check('name', 'Name is required')
+    //     .not()
+    //     .isEmpty(),
     check('email', 'Please include a valid email')
         .isEmail(),
     check('password', 'Please enter a password with 6 or more characters')
@@ -21,14 +21,18 @@ router.post('/', [
     ], 
     async (req, res) => {
         console.log('users async ran')
-        console.log('req:', req)
-        console.log('res:', res)
+        // console.log('req:', req)
+        // console.log('res:', res)
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, email, password } = req.body;
+        const { 
+            // name, 
+            email, 
+            password 
+        } = req.body;
 
         try {
             // See if user exists
@@ -39,7 +43,7 @@ router.post('/', [
             }
 
             user = new User({
-                name,
+                // name,
                 email,
                 password
             });
