@@ -285,10 +285,8 @@ input {
   align-items: center;
   /* padding: 0rem 2rem; */
   /* position: fixed; */
-  z-index: 1;
-  /* width: 100%; */
-  top: 0;
-  
+  /* z-index: 1;
+  top: 0; */
 }
 
 .navbar a {
@@ -312,6 +310,116 @@ input {
 .nav-link-3 {
   grid-column: 4;
 }
+
+
+/* MAINTENANCE OPTIONS */
+
+.maintenance-options {
+  border: 2px solid green;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 10% 10% 80%;
+}
+
+.maintenance-options > h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 3em;
+  color: #008CC5;
+  margin: 0;
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  border: 1px solid red;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.maintenance-options > h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+  color: #384669;
+  grid-row: 2;
+  border: 1px solid navy;
+}
+
+.wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
+  display: grid;
+  grid-row: 3;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.wrapper-1 {
+  border: 3px solid orange;
+  grid-column: 1;
+}
+
+.wrapper-2 {
+  border: 3px solid purple;
+  grid-column: 2;
+}
+
+.wrapper-3 {
+  border: 3px solid teal;
+  grid-column: 3;
+}
+
+.wrapper-4 {
+  border: 3px solid limegreen;
+  grid-column: 4;
+}
+
+.maintenance-item {
+  border: 1px solid red;
+  background-color: #fff;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.icon {
+  grid-column: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  padding: 20px;
+}
+
+.maintenance-task {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  color: #008CC5;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  padding: 10px 0 0 0;
+  margin: 0;
+  border: 1px solid greenyellow;
+}
+
+.schedule-task {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #384669;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  padding: 0;
+  margin: 0;
+  border: 1px solid greenyellow;
+}
+
+.schedule-task:hover {
+  color: #00B5DF;
+  transition: color 0.5s ease;
+}
+
+.purple {
+  border: 3px solid purple;
+}
+
 
 /* main {
   align-items: center;
