@@ -3,22 +3,67 @@ import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
 
 export default function MaintenanceOptions() {
-    // toggle schedule task; open/close
+    // store maintenance options in a state list
+    // each maintenance item will be its own component
 
-    const [clickedItem, currentClickedItem] = useState({});
+    const monthlyItems = [
+        'Check Lights', 
+        'Tire inflation, tread, and general condition',
+        'Engine oil',
+        'Check windshield wiper fluid',
+        'Check brake fluid',
+        'Check coolant'
+    ]
 
-    // each div item needs an id
+    const maintenanceItems = [
+        {
+            monthly: [
+                'Check Lights', 
+                'Tire inflation, tread, and general condition',
+                'Engine oil',
+                'Check windshield wiper fluid',
+                'Check brake fluid',
+                'Check coolant'
+                ],
+            threeMonths: [
+                'Automatic transmission fluid',
+                'Battery and cables',
+                'Check belts and hoses',
+                'Check power steering fluid'
+            ]
+        }
+    ];
 
-    const handleItemClick = e => {
-        e.preventDefault();
-        e.currentTarget.classList.toggle("purple")
-        console.log('e.currentTarget:', e.currentTarget)
-        console.log('e.currentTarget.style:', e.currentTarget.style)
-        console.log('e.currentTarget.classList:', e.currentTarget.classList)
-        currentClickedItem(e.currentTarget)
-        console.log('clickedItem:', clickedItem)
-    }
     const [hidden, setHidden] = useState(true);
+    const [key, setKey] = useState(null);
+
+    function renderForm(e) {
+        e.preventDefault();
+        console.log('e.currentTarget.getAttribute("data-index"):', e.currentTarget.getAttribute("data-index"))
+        const key = e.currentTarget.getAttribute("data-index");
+        setKey(key);
+        setHidden(!hidden);
+    }
+
+
+    const monthlyTasks = monthlyItems.map((item, index) => {
+        return (
+            <div className="maintenance-item" key={index} data-index={index} onClick={renderForm}>
+                <img src={light} className="icon" />
+                <p className="maintenance-task">{item}</p>
+                <p className="schedule-task">Schedule this task</p>
+                {console.log('key:', key)}
+                {console.log('index:', index)}
+                {!hidden && key === `${index}` && (
+                    <form>
+                        <input type="text"/>
+                    </form>
+                )}
+            </div>
+        );
+    });
+
+            
 
     return (
         <Fragment>
@@ -27,21 +72,18 @@ export default function MaintenanceOptions() {
             <h1>Maintenance Options</h1>
             <h2>Monthly</h2>
             <div className="wrapper-1">
-                <div className="maintenance-item" onClick={() => setHidden(false)}>
+                {monthlyTasks}
+                {/* <div className="maintenance-item">
                     <img src={light} className="icon" />
                     <p className="maintenance-task">Check Lights</p>
                     <p className="schedule-task">Schedule this task</p>
-                    {!hidden && <form>
-                        <input type="text"/>
-                    </form>}
+                    
                 </div>
-                <div className="maintenance-item" onClick={() => setHidden(false)}>
+                <div className="maintenance-item">
                     <img src={light} className="icon" />
                     <p className="maintenance-task">Tire inflation, tread, and general condition</p>
                     <p className="schedule-task">Schedule this task</p>
-                    {!hidden && <form>
-                        <input type="text"/>
-                    </form>}
+                    
                 </div>
                 <div className="maintenance-item">
                     <img src={light} className="icon" />
@@ -59,7 +101,7 @@ export default function MaintenanceOptions() {
                 <div className="maintenance-item">
                     <p className="maintenance-task">Check coolant</p>
                     <p className="schedule-task">Schedule this task</p>
-                </div>
+                </div> */}
             </div>
             
             <h2>Every 3 months/<br/>3,000 miles</h2>
