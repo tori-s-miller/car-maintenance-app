@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -34,13 +34,35 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="navbar">
       <ul>
         <li className="nav-link-1">
-          <Link to="/maintenance-options">Maintenance Options</Link>
+          {/* <Link to="/maintenance-options">Maintenance Options</Link> */}
+          <NavLink 
+            to="/maintenance-options"
+            activeStyle={{
+              color: "#008CC5"
+            }}
+          >
+            Maintenance Options
+          </NavLink>
         </li>
         <li className="nav-link-2">
-          <Link to="/pending-maintenance">Pending Maintenance</Link>
+          <NavLink 
+            to="/pending-maintenance"
+            activeStyle={{
+              color: "#008CC5"
+            }}
+            >
+              Pending Maintenance
+          </NavLink>
         </li>
         <li className="nav-link-3">
-          <Link to="/completed-maintenance">Completed Maintenance</Link>
+          <NavLink 
+            to="/completed-maintenance"
+            activeStyle={{
+              color: "#008CC5"
+            }}
+            >
+              Completed Maintenance
+          </NavLink>
         </li>
         <li>
           <a onClick={logout} href="#!">
