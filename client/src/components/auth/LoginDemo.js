@@ -40,7 +40,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <h2>Log Into Demo Account</h2>
                 <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                    <label for="email" className="email-label">Email</label>
+                    <label htmlFor="email" className="email-label">Email</label>
                     <input type="email" placeholder="Email Address" name="email" value={email} 
                         onChange={e => onChange(e)} required />
                 </div>

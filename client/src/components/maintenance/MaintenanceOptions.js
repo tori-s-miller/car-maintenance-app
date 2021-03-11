@@ -49,7 +49,7 @@ export default function MaintenanceOptions() {
         e.preventDefault();
         const key = e.currentTarget.getAttribute("data-index");
         const itemType = e.currentTarget.getAttribute("current-type")
-        console.log('itemType:', itemType)
+        console.log('renderForm itemType:', itemType)
         setItemType(itemType)
         setKey(key);
         setHidden(!hidden);
@@ -58,7 +58,7 @@ export default function MaintenanceOptions() {
     const monthlyTasks = monthlyItems.map((item, index) => {
         return (
             <div 
-                className={!hidden && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
+                className={!hidden && itemType === "monthly" && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
                 key={index} 
                 data-index={index} 
                 current-type="monthly" 
@@ -84,12 +84,13 @@ export default function MaintenanceOptions() {
     const threeMonthTasks = threeMonths.map((item, index) => {
         return (
             <div 
-                className={!hidden && key === `${index}` ? "maintenance-item-expanded" : index === 4 || index === 5 ? "maintenance-item-hidden" : "maintenance-item"} 
+                className={!hidden && itemType === "threeMonths" && key === `${index}` ? "maintenance-item-expanded" : index === 4 || index === 5 ? "maintenance-item-hidden" : "maintenance-item"} 
                 key={index} 
                 data-index={index} 
                 current-type="threeMonths" 
                 onClick={hidden ? renderForm : undefined}
             >
+            {console.log('threeMonthTasks itemType:', itemType)}
                 <img src={light} className="icon" />
                 <p className="maintenance-task">{item}</p>
                 <p className="schedule-task">Schedule this task</p>
@@ -110,7 +111,7 @@ export default function MaintenanceOptions() {
     const sixMonthTasks = sixMonths.map((item, index) => {
         return (
             <div 
-                className={!hidden && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
+                className={!hidden && itemType === "sixMonths" && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
                 key={index} 
                 data-index={index} 
                 current-type="sixMonths" 
@@ -136,7 +137,7 @@ export default function MaintenanceOptions() {
     const yearlyTasks = yearlyItems.map((item, index) => {
         return (
             <div 
-                className={!hidden && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
+                className={!hidden && itemType === "yearly" && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
                 key={index} 
                 data-index={index} 
                 current-type="yearly" 
@@ -164,9 +165,8 @@ export default function MaintenanceOptions() {
         <Fragment>
             <Navbar />
             <section className="maintenance-options">
-                <h1>Maintenance Options</h1>
                 <h2>Monthly</h2>
-                <div className="wrapper-1">
+                <div className={itemType === "monthly" ? "wrapper-1" :  "wrapper-1 auto-rows"}>
                     {monthlyTasks}
                 </div>
                 
@@ -178,12 +178,12 @@ export default function MaintenanceOptions() {
                 </div>
 
                 <h2>Every 6 months/<br/>6,000 miles</h2>
-                <div className="wrapper-3">
+                <div className={itemType === "sixMonths" ? "wrapper-3" :  "wrapper-3 auto-rows"}>
                     {sixMonthTasks}
                 </div>
 
                 <h2>Every 12 months/<br/>12,000 miles</h2>
-                <div className="wrapper-4">
+                <div className={itemType === "yearly" ? "wrapper-4" :  "wrapper-4 auto-rows"}>
                     {yearlyTasks}
                 </div>
             </section>  
