@@ -6,7 +6,7 @@ export default function MaintenanceOptions() {
 
     const monthlyItems = [
         'Check Lights', 
-        'Tire inflation, tread, and general condition',
+        'Tire inflation and tread',
         'Engine oil',
         'Check windshield wiper fluid',
         'Check brake fluid',
@@ -69,10 +69,10 @@ export default function MaintenanceOptions() {
                 <p className="schedule-task">Schedule this task</p>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <form className="maintenance-item-form">
-                        <label htmlFor="date" className="date-label">Date to be scheduled</label>
+                        <label htmlFor="date" className="date-label">Date to be completed</label>
                         <input type="date" name="start-date" className="date-input" />
-                        <label htmlFor="notes" className="notes-label"></label>
-                        <input type="textarea" name="notes" className="input-notes" />
+                        <label htmlFor="notes" className="notes-label">Notes</label>
+                        <textarea rows="3" name="notes" className="input-notes" />
                         <input type="submit" value="Schedule Task" className="submit-button" />
                         <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
                     </form>
