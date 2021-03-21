@@ -349,7 +349,7 @@ input {
 }
 
 .auto-rows {
-  grid-auto-rows: 1fr;
+  grid-auto-rows: 75px;
 }
 
 .wrapper-1 {
@@ -374,7 +374,8 @@ input {
   height: 60px;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 2;
+  grid-template-rows: 2fr;
+  /* display: flex; */
   border-radius: 10px;
   cursor: pointer;
   align-items: center;
@@ -400,11 +401,19 @@ input {
 } */
 
 .icon {
-  grid-column: 1;
+  /* grid-column: 1;
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 3; */
   padding: 10px;
   align-items: center;
+  flex: 1;
+}
+
+.flex-container {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
 }
 
 .maintenance-task {
@@ -412,9 +421,9 @@ input {
   font-weight: 700;
   font-size: .9em;
   color: #008CC5;
-  grid-column-start: 2;
+  /* grid-column-start: 2;
   grid-column-end: 4;
-  grid-row: 1;
+  grid-row: 1; */
   padding: 5px 5px 0 0;
   margin: 0;
 }
@@ -424,11 +433,11 @@ input {
   font-weight: 400;
   font-size: .8em;
   color: #384669;
-  grid-column-start: 2;
+  /* grid-column-start: 2;
   grid-column-end: 4;
-  grid-row: 2;
+  grid-row: 2; */
   margin: 0;
-  padding-bottom: 5px;
+  padding: 5px 0;
 }
 
 .schedule-task:hover {
