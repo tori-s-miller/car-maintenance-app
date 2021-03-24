@@ -64,11 +64,13 @@ export default function MaintenanceOptions() {
                 current-type="monthly" 
                 onClick={hidden ? renderForm : undefined}
             >
+                {/* <div className={!hidden && itemType === "monthly" && key === `${index}` ? "flex-container-expanded" : "" }> */}
                 <img src={light} className="icon" />
                 <div className="flex-container">
                     <p className="maintenance-task">{item}</p>
                     <p className="schedule-task">Schedule this task</p>
                 </div>
+                {/* </div> */}
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be completed</label>
@@ -174,7 +176,7 @@ export default function MaintenanceOptions() {
             <Navbar />
             <section className="maintenance-options">
                 <h2>Monthly</h2>
-                <div className={itemType === "monthly" ? "wrapper-1" :  "wrapper-1 auto-rows"}>
+                <div className="wrapper-1">
                     {monthlyTasks}
                 </div>
                 
