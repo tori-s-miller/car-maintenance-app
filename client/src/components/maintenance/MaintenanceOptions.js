@@ -64,13 +64,13 @@ export default function MaintenanceOptions() {
                 current-type="monthly" 
                 onClick={hidden ? renderForm : undefined}
             >
-                {/* <div className={!hidden && itemType === "monthly" && key === `${index}` ? "flex-container-expanded" : "" }> */}
-                <img src={light} className="icon" />
                 <div className="flex-container">
-                    <p className="maintenance-task">{item}</p>
-                    <p className="schedule-task">Schedule this task</p>
+                    <img src={light} className="icon" />
+                    <div className="flex-sub-container">
+                        <p className="maintenance-task">{item}</p>
+                        <p className="schedule-task">Schedule this task</p>
+                    </div>
                 </div>
-                {/* </div> */}
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be completed</label>
@@ -94,11 +94,12 @@ export default function MaintenanceOptions() {
                 current-type="threeMonths" 
                 onClick={hidden ? renderForm : undefined}
             >
-            {console.log('threeMonthTasks itemType:', itemType)}
-                <img src={light} className="icon" />
                 <div className="flex-container">
-                    <p className="maintenance-task">{item}</p>
-                    <p className="schedule-task">Schedule this task</p>
+                    <img src={light} className="icon" />
+                    <div className="flex-sub-container">
+                        <p className="maintenance-task">{item}</p>
+                        <p className="schedule-task">Schedule this task</p>
+                    </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "threeMonths" && (
                     <form className="maintenance-item-form">
@@ -123,10 +124,12 @@ export default function MaintenanceOptions() {
                 current-type="sixMonths" 
                 onClick={hidden ? renderForm : undefined}
             >
-                <img src={light} className="icon" />
                 <div className="flex-container">
-                    <p className="maintenance-task">{item}</p>
-                    <p className="schedule-task">Schedule this task</p>
+                    <img src={light} className="icon" />
+                    <div className="flex-sub-container">
+                        <p className="maintenance-task">{item}</p>
+                        <p className="schedule-task">Schedule this task</p>
+                    </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "sixMonths" && (
                     <form className="maintenance-item-form">
@@ -150,10 +153,12 @@ export default function MaintenanceOptions() {
                 data-index={index} 
                 current-type="yearly" 
                 onClick={hidden ? renderForm : undefined}>
-                <img src={light} className="icon" />
                 <div className="flex-container">
-                    <p className="maintenance-task">{item}</p>
-                    <p className="schedule-task">Schedule this task</p>
+                <img src={light} className="icon" />
+                    <div className="flex-sub-container">
+                        <p className="maintenance-task">{item}</p>
+                        <p className="schedule-task">Schedule this task</p>
+                    </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "yearly" && (
                     <form className="maintenance-item-form">

@@ -390,16 +390,21 @@ input {
   /* display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 6; */
-  display: flex;
+  /* display: flex; */
   border-radius: 10px;
   cursor: pointer;
   -webkit-box-shadow: 0px 2px 14px 2px rgba(110, 20, 20, 0.09); 
   box-shadow: 0px 2px 14px 2px rgba(0,0,0,0.09);
 }
 
-.flex-container-expanded {
-  border: 2px dashed green;
+.flex-container {
+  border: 2px solid teal;
+  display: flex;
 }
+
+/* .flex-container-expanded {
+  border: 2px dashed green;
+} */
 
 /* .maintenance-item-hidden {
   background-color: none;
@@ -415,7 +420,7 @@ input {
   border: 1px solid blue;
 }
 
-.flex-container {
+.flex-sub-container {
   flex: 3;
   display: flex;
   flex-direction: column;
