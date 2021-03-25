@@ -49,7 +49,6 @@ export default function MaintenanceOptions() {
         e.preventDefault();
         const key = e.currentTarget.getAttribute("data-index");
         const itemType = e.currentTarget.getAttribute("current-type")
-        console.log('renderForm itemType:', itemType)
         setItemType(itemType)
         setKey(key);
         setHidden(!hidden);
@@ -88,7 +87,7 @@ export default function MaintenanceOptions() {
     const threeMonthTasks = threeMonths.map((item, index) => {
         return (
             <div 
-                className={!hidden && itemType === "threeMonths" && key === `${index}` ? "maintenance-item-expanded" : index === 4 || index === 5 ? "maintenance-item-hidden" : "maintenance-item"} 
+                className={!hidden && itemType === "threeMonths" && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
                 key={index} 
                 data-index={index} 
                 current-type="threeMonths" 
@@ -186,19 +185,19 @@ export default function MaintenanceOptions() {
                 </div>
                 
                 <h2>Every 3 months/<br/>3,000 miles</h2>
-                <div className={itemType === "threeMonths" ? "wrapper-2" :  "wrapper-2 auto-rows"}>
+                <div className="wrapper-2">
                     {threeMonthTasks}
                     <div></div>
                     <div></div>
                 </div>
 
                 <h2>Every 6 months/<br/>6,000 miles</h2>
-                <div className={itemType === "sixMonths" ? "wrapper-3" :  "wrapper-3 auto-rows"}>
+                <div className="wrapper-3">
                     {sixMonthTasks}
                 </div>
 
                 <h2>Every 12 months/<br/>12,000 miles</h2>
-                <div className={itemType === "yearly" ? "wrapper-4" :  "wrapper-4 auto-rows"}>
+                <div className="wrapper-4">
                     {yearlyTasks}
                 </div>
             </section>  
