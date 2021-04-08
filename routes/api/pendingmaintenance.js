@@ -57,6 +57,59 @@ router.get('/', auth, async (req, res) => {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-})
+});
+
+// @route GET api/pendingmaintenance/:id
+// @desc Get a pending maintenance item by id
+// @access Private
+router.get('/:id', auth, async (req, res) => {
+    try {
+        const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
+        
+        if(!pendingMaintenance) {
+            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        }
+        
+        res.json(pendingMaintenance)
+    } catch (err) {
+        console.error(err.message);
+
+        if(err.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        }
+
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route DELETE api/pendingmaintenance/:id
+// @desc Delete a pending maintenance item
+// @access Private
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
+
+        if(!pendingMaintenance) {
+            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        }
+
+        // Check user
+        if(pendingMaintenance.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+        }
+
+        await pendingMaintenance.remove();
+
+        res.json({ msg: 'Post removed' });
+    } catch (err) {
+        console.error(err.message);
+
+        if(err.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        }
+
+        res.status(500).send('Server Error');
+    }
+});
 
 module.exports = router;
