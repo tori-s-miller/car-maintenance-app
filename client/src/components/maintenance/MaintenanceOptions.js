@@ -1,6 +1,8 @@
 import React, { useState, Fragment } from 'react';
 import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
+import AddPendingMaintenance from '../forms/AddPendingMaintenance';
+
 
 export default function MaintenanceOptions() {
 
@@ -29,7 +31,6 @@ export default function MaintenanceOptions() {
         'Brakes inspection'
     ]
 
-
     const yearlyItems = [
         'Replace cabin air filter',
         'Check fuel filter',
@@ -38,8 +39,6 @@ export default function MaintenanceOptions() {
         'Check alignment',
         'Polish windshield and headlights'
     ]
-
-
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
@@ -53,6 +52,7 @@ export default function MaintenanceOptions() {
         setKey(key);
         setHidden(!hidden);
     }
+
 
     const monthlyTasks = monthlyItems.map((item, index) => {
         return (
@@ -71,14 +71,15 @@ export default function MaintenanceOptions() {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
-                    <form className="maintenance-item-form">
+                    <AddPendingMaintenance /> 
+                    /* <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be completed</label>
                         <input type="date" name="start-date" className="date-input" />
                         <label htmlFor="notes" className="notes-label">Notes</label>
                         <textarea rows="3" name="notes" className="input-notes" />
                         <input type="submit" value="Schedule Task" className="submit-button" />
                         <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
-                    </form>
+                    </form> */
                 )}
             </div>
         );
@@ -101,14 +102,18 @@ export default function MaintenanceOptions() {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "threeMonths" && (
-                    <form className="maintenance-item-form">
+                    <div></div>
+                    /* <form className="maintenance-item-form" onSubmit={e => {
+                         e.preventDefault();
+                         addPendingMaintenance(formData, history)
+                        }}>
                         <label htmlFor="date" className="date-label">Date to be scheduled</label>
                         <input type="date" name="start-date" className="date-input" />
                         <label htmlFor="notes" className="notes-label"></label>
                         <input type="textarea" name="notes" className="input-notes" />
                         <input type="submit" value="Schedule Task" className="submit-button" />
                         <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
-                    </form>
+                    </form> */
                 )}
             </div>
         );
@@ -131,14 +136,15 @@ export default function MaintenanceOptions() {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "sixMonths" && (
-                    <form className="maintenance-item-form">
+                    <div></div>
+                    /* <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be scheduled</label>
                         <input type="date" name="start-date" className="date-input" />
                         <label htmlFor="notes" className="notes-label"></label>
                         <input type="textarea" name="notes" className="input-notes" />
                         <input type="submit" value="Schedule Task" className="submit-button" />
                         <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
-                    </form>
+                    </form> */
                 )}
             </div>
         );
@@ -160,14 +166,15 @@ export default function MaintenanceOptions() {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "yearly" && (
-                    <form className="maintenance-item-form">
+                    <div></div>
+                    /* <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be scheduled</label>
                         <input type="date" name="start-date" className="date-input" />
                         <label htmlFor="notes" className="notes-label"></label>
                         <input type="textarea" name="notes" className="input-notes" />
                         <input type="submit" value="Schedule Task" className="submit-button" />
                         <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
-                    </form>
+                    </form> */
                 )}
             </div>
         );
