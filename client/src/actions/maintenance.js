@@ -2,9 +2,29 @@ import axios from 'axios';
 import { setAlert } from './alert';
 
 import {
+    ADD_MAINTENANCE,
     UPDATE_MAINTENANCE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    GET_MAINTENANCE,
+    MAINTENANCE_ERROR
 } from './types';
+
+// Get Pending Maintenance
+export const getPendingMaintenance = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/pendingmaintenance')
+
+        dispatch({
+            type: GET_MAINTENANCE,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: MAINTENANCE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+}
 
 // Add Pending Maintenance
 export const addPendingMaintenance = (formData, history) => async dispatch => {
@@ -19,7 +39,7 @@ export const addPendingMaintenance = (formData, history) => async dispatch => {
         const res = await axios.post('/api/pendingmaintenance', formData, config);
 
         dispatch({
-            type: UPDATE_MAINTENANCE,
+            type: ADD_MAINTENANCE,
             payload: res.data
         });
 

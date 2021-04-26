@@ -53,13 +53,22 @@ export default function MaintenanceOptions() {
         setHidden(!hidden);
     }
 
+    const [child, setChild] = React.useState(false);
+    const handleChildState = React.useCallback(childState => {
+      setChild(childState);
+      console.log('MaintenanceOptions handleChildState childState:', childState)
+    }, []);
+
+    console.log('hidden:', hidden)
+    console.log('child', child)
+
 
     const monthlyTasks = monthlyItems.map((item, index) => {
         return (
             <div 
                 className={!hidden && itemType === "monthly" && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"} 
                 key={index} 
-                data-index={index} 
+                data-index={index}
                 current-type="monthly" 
                 onClick={hidden ? renderForm : undefined}
             >
@@ -71,7 +80,9 @@ export default function MaintenanceOptions() {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
-                    <AddPendingMaintenance /> 
+                    <Fragment>
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} />
+                    </Fragment>
                     /* <form className="maintenance-item-form">
                         <label htmlFor="date" className="date-label">Date to be completed</label>
                         <input type="date" name="start-date" className="date-input" />

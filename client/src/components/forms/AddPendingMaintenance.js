@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPendingMaintenance } from '../../actions/maintenance';
 
-const AddPendingMaintenance = ({ addPendingMaintenance, history }) => {
+const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm }) => {
+
+    console.log('AddPendingMaintenance handleChild:', handleChild)
+    console.log('AddPendingMaintenance renderForm:', renderForm)
+
     const [formData, setFormData] = useState({
         date: '',
         notes: ''
@@ -12,12 +16,23 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history }) => {
 
     const { date, notes } = formData;
 
-    console.log('AddPendingMaintenance form history:', history)
-    console.log('AddPendingMaintenance form addPendingMaintenance action:', addPendingMaintenance)
-
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
+
+    
+    // function renderForm(e) {
+    //     e.preventDefault();
+    //     setFormHidden(!formHidden);
+    // }
+
+    const [state, setState] = React.useState("");
+    React.useEffect(() => {
+        handleChild(state);
+    }, [state]);
+
+    console.log('AddPendingMaintenance state:', state)
+
 
     return (
         <Fragment>
@@ -30,7 +45,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history }) => {
                 <label htmlFor="notes" className="notes-label">Notes</label>
                 <textarea rows="3" name="notes" className="input-notes" />
                 <input type="submit" value="Schedule Task" className="submit-button" />
-                {/* <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} /> */}
+                <input type="button" value="Cancel" className="cancel-button" onClick={e => renderForm(e)} />
             </form>
         </Fragment>
     )
@@ -40,4 +55,5 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history }) => {
 //     addGoalInProgress: PropTypes.func.isRequired
 // }
 
-export default connect(null, { addPendingMaintenance })(withRouter(AddPendingMaintenance));
+
+export default connect(null, { addPendingMaintenance })(AddPendingMaintenance);
