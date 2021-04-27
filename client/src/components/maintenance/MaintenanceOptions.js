@@ -81,16 +81,8 @@ export default function MaintenanceOptions() {
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} />
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
                     </Fragment>
-                    /* <form className="maintenance-item-form">
-                        <label htmlFor="date" className="date-label">Date to be completed</label>
-                        <input type="date" name="start-date" className="date-input" />
-                        <label htmlFor="notes" className="notes-label">Notes</label>
-                        <textarea rows="3" name="notes" className="input-notes" />
-                        <input type="submit" value="Schedule Task" className="submit-button" />
-                        <input type="button" value="Cancel" className="cancel-button" onClick={renderForm} />
-                    </form> */
                 )}
             </div>
         );

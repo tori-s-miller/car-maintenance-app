@@ -4,34 +4,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPendingMaintenance } from '../../actions/maintenance';
 
-const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm }) => {
-
-    console.log('AddPendingMaintenance handleChild:', handleChild)
-    console.log('AddPendingMaintenance renderForm:', renderForm)
+const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm, item }) => {
 
     const [formData, setFormData] = useState({
+        maintenanceType: item,
         date: '',
         notes: ''
     });
 
-    const { date, notes } = formData;
+    const { maintenanceType, date, notes } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    
-    // function renderForm(e) {
-    //     e.preventDefault();
-    //     setFormHidden(!formHidden);
-    // }
-
     const [state, setState] = React.useState("");
     React.useEffect(() => {
         handleChild(state);
     }, [state]);
-
-    console.log('AddPendingMaintenance state:', state)
 
 
     return (
@@ -39,21 +29,18 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
             <form className="maintenance-item-form" onSubmit={e => {
                 e.preventDefault();
                 addPendingMaintenance(formData, history);
+                {console.log('formData inside form:', formData)}
                 }}>
                 <label htmlFor="date" className="date-label">Date to be completed</label>
-                <input type="date" name="start-date" className="date-input" />
+                <input type="date" name="date" className="date-input" value={date} onChange={e => onChange(e)} />
                 <label htmlFor="notes" className="notes-label">Notes</label>
-                <textarea rows="3" name="notes" className="input-notes" />
+                <textarea rows="3" name="notes" className="input-notes" value={notes} onChange={e => onChange(e)} />
                 <input type="submit" value="Schedule Task" className="submit-button" />
                 <input type="button" value="Cancel" className="cancel-button" onClick={e => renderForm(e)} />
             </form>
         </Fragment>
     )
 }
-
-// AddGoalInProgress.propTypes = {
-//     addGoalInProgress: PropTypes.func.isRequired
-// }
 
 
 export default connect(null, { addPendingMaintenance })(AddPendingMaintenance);
