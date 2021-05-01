@@ -29,7 +29,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
             <form className="maintenance-item-form" onSubmit={e => {
                 e.preventDefault();
                 addPendingMaintenance(formData, history);
-                {console.log('formData inside form:', formData)}
+                renderForm(e);
                 }}>
                 <label htmlFor="date" className="date-label">Date to be completed</label>
                 <input type="date" name="date" className="date-input" value={date} onChange={e => onChange(e)} />
