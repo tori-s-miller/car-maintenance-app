@@ -56,6 +56,7 @@ export default function MaintenanceOptions() {
     const [child, setChild] = React.useState(false);
     const handleChildState = React.useCallback(childState => {
       setChild(childState);
+      console.log('MaintenanceOptions childState:', childState)
     }, []);
 
 

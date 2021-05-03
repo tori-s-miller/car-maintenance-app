@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import LoginDemo from './components/auth/LoginDemo';
 import Alert from './components/layout/Alert';
 import MaintenanceOptions from './components/maintenance/MaintenanceOptions';
+import PendingMaintenance from './components/maintenance/PendingMaintenance';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Redux
@@ -30,10 +31,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    {/* fragment is a ghost element that won't show up in the dom */}
+    {console.log('App store:', store)}
     <Router>
       <Fragment>
-        {/* <Navbar /> */}
         <Route exact path="/" component={Landing} />
         <section className="container">
           <Alert />
@@ -42,6 +42,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/login-demo" component={LoginDemo} />
             <PrivateRoute exact path="/maintenance-options" component={MaintenanceOptions} />
+            <PrivateRoute exact path="/pending-maintenance" component={PendingMaintenance} />
           </Switch>
         </section>
       </Fragment>
