@@ -15,7 +15,6 @@ import setAuthToken from '../utils/setAuthToken';
 // Load User
 export const loadUser = () => async dispatch => {
     // check local storage
-    console.log('loadUser localStorage:', localStorage)
     if(localStorage.token) {
         setAuthToken(localStorage.token);
     }
@@ -45,8 +44,6 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     try {
         const res = await axios.post('/api/users', body, config);
-        console.log('body:', body)
-        console.log('res:', res)
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -56,10 +53,8 @@ export const register = ({ name, email, password }) => async dispatch => {
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
-        console.log('FUCKING err:', err)
 
         if(errors) {
-            console.log('there were fucking errors when register dispatched')
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }
 
@@ -71,9 +66,6 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 // Login User
 export const login = (email, password) => async dispatch => {
-    console.log('auth.js login ran')
-    console.log('auth.js login email:', email)
-    console.log('auth.js login password:', password)
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -83,12 +75,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password });
 
     try {
-        console.log('try ran')
-        console.log('try config:', config)
-        console.log('try body:', body)
         const res = await axios.post('/api/auth', body, config);
-
-        console.log('login res:', res)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -97,7 +84,6 @@ export const login = (email, password) => async dispatch => {
         localStorage.setItem('token', res.data.token);
         dispatch(loadUser());
     } catch (err) {
-        console.log('login err:', err)
         const errors = err.response.data.errors;
 
         if(errors) {

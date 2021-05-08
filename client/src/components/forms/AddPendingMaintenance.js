@@ -42,5 +42,8 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
     )
 }
 
+const mapStateToProps = state => ({
+    pendingMaintenance: state.pendingMaintenance
+})
 
-export default connect(null, { addPendingMaintenance })(AddPendingMaintenance);
+export default connect(mapStateToProps, { addPendingMaintenance })(AddPendingMaintenance);

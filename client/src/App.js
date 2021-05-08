@@ -41,8 +41,8 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/login-demo" component={LoginDemo} />
-            <PrivateRoute exact path="/maintenance-options" component={MaintenanceOptions} />
-            <PrivateRoute exact path="/pending-maintenance" component={PendingMaintenance} />
+            <PrivateRoute exact path="/maintenanceoptions" component={MaintenanceOptions} />
+            <PrivateRoute exact path="/pendingmaintenance" component={PendingMaintenance} />
           </Switch>
         </section>
       </Fragment>

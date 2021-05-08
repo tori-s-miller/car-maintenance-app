@@ -2,9 +2,12 @@ import React, { useState, Fragment } from 'react';
 import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
 import AddPendingMaintenance from '../forms/AddPendingMaintenance';
+import { connect } from 'react-redux';
 
 
-export default function MaintenanceOptions() {
+function MaintenanceOptions(props) {
+
+    console.log('MaintenanceOptions props:', props)
 
     const monthlyItems = [
         'Check Lights', 
@@ -190,3 +193,9 @@ export default function MaintenanceOptions() {
         </Fragment>
     )
 }
+
+const mapStateToProps = state => ({
+    pendingMaintenance: state.pendingMaintenance
+})
+
+export default connect(mapStateToProps)(MaintenanceOptions);

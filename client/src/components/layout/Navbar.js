@@ -36,7 +36,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <li className="nav-link-1">
           {/* <Link to="/maintenance-options">Maintenance Options</Link> */}
           <NavLink 
-            to="/maintenance-options"
+            to="/maintenanceoptions"
             activeStyle={{
               color: "#008CC5"
             }}
@@ -46,7 +46,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </li>
         <li className="nav-link-2">
           <NavLink 
-            to="/pending-maintenance"
+            to="/pendingmaintenance"
             activeStyle={{
               color: "#008CC5"
             }}
@@ -56,7 +56,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </li>
         <li className="nav-link-3">
           <NavLink 
-            to="/completed-maintenance"
+            to="/completedmaintenance"
             activeStyle={{
               color: "#008CC5"
             }}

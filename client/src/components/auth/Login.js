@@ -28,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
 
     // Redirect if logged in
     if(isAuthenticated) {
-        return <Redirect to="/maintenance-options" />
+        return <Redirect to="/maintenanceoptions" />
     }
 
     return (
