@@ -6,6 +6,8 @@ import {
     // UPDATE_MAINTENANCE,
     PROFILE_ERROR,
     GET_MAINTENANCE,
+    GET_COMPLETED_MAINTENANCE,
+    ADD_COMPLETED_MAINTENANCE,
     MAINTENANCE_ERROR
 } from './types';
 
@@ -54,6 +56,58 @@ export const addPendingMaintenance = (formData, history) => async dispatch => {
 
         dispatch({
             type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        }); 
+    }
+}
+
+
+// Get Completed Maintenance
+export const getCompletedMaintenance = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/completedmaintenance')
+
+        dispatch({
+            type: GET_COMPLETED_MAINTENANCE,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: MAINTENANCE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+}
+
+
+// Add Completed Maintenance  THIS SHOULDN'T TAKE IN FORM DATA
+export const addCompletedMaintenance = (formData, history) => async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.post('/api/completedmaintenance', formData, config);
+
+        dispatch({
+            type: ADD_COMPLETED_MAINTENANCE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Completed Maintenance Added', 'success'));
+
+        // history.push('/dashboard');
+    } catch (err) {
+        const errors = err.response.data.errors;
+
+        if(errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        dispatch({
+            type: MAINTENANCE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         }); 
     }

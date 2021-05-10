@@ -17,10 +17,17 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
         console.log('renderForm hidden 1:', hidden)
         e.preventDefault();
         console.log('Pending Maintenance renderForm triggered')
+        console.log('e.currentTarget:', e.currentTarget)
         const key = e.currentTarget.getAttribute("data-index");
         setKey(key);
         setHidden(!hidden);
+        console.log('renderForm key:', key)
         console.log('renderForm hidden 2:', hidden)
+    }
+
+    function cancelButton(e) {
+        e.preventDefault();
+        setHidden(!hidden);
     }
 
     return (
@@ -28,26 +35,35 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
             <Navbar />
             <h1 className="pending-maintenance-h1">Pending Maintenance Items</h1>
             {pendingMaintenanceItems.map((item, index) => {
+                console.log('index:', index)
                 if (auth.user._id === item.user) {
                     return (
                         <div 
                             className={!hidden && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"}
                             key={index}
+                            data-index={index}
                             onClick={hidden ? renderForm : undefined}
                         >
                             <div className="flex-container">
                                 <img src={light} className="icon" />
                                 <div className="flex-sub-container">
                                     <p className="maintenance-task">{item.maintenanceType}</p>
-                                    <p className="schedule-task">Task Completed</p>
+                                    <p className="maintenance-task">{item.date}</p>
+                                    <p className="maintenance-task">{item.notes}</p>
+                                    {/* after clicking on "task completed", hide that text
+                                    and change to "Add to completed maintenance?" with
+                                    an "ok" button and a cancel button */}
+                                    {hidden && <p className="schedule-task">Task Completed</p>}
+                                    {!hidden && key === `${index}` && (
+                                        <Fragment>
+                                            <p>Add to Completed Maintenance?</p>
+                                            <button>YES</button>
+                                            <button onClick={cancelButton}>CANCEL</button>
+                                        </Fragment>
+                                    )}
                                 </div>
                             </div>
-                            {!hidden && key === `${index}` && (
-                                <Fragment>
-                                    <div>add to completed will go here</div>
-                                    {/*<AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />*/}
-                                </Fragment>
-                            )}
+                            
                         </div>
                     )
                 }
