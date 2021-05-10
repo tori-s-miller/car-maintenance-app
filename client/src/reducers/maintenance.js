@@ -12,21 +12,16 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-    console.log('maintenance state:', state)
-    console.log('maintenance action:', action)
     const { type, payload } = action;
-    console.log('reducer payload:', payload)
 
     switch(type) {
         case GET_MAINTENANCE:
-            console.log('GET_MAINTENANCE ran')
             return {
                 ...state,
                 pendingMaintenanceItems: payload,
                 loading: false
             };
         case ADD_MAINTENANCE:
-            console.log('ADD_MAINTENANCE ran')
             return {
                 ...state,
                 pendingMaintenanceItems: [...state.pendingMaintenanceItems, payload],
@@ -42,5 +37,3 @@ export default function(state = initialState, action) {
             return state;
     }
 }
-
-console.log('maintenance.js initialState:', initialState)

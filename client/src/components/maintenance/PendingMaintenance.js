@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Navbar from '../layout/Navbar';
 import { getPendingMaintenance } from '../../actions/maintenance';
 import { connect } from 'react-redux';
+import light from './img/car-light.svg';
 
 const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceItems }) => {
 
@@ -9,23 +10,45 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
         getPendingMaintenance();
     }, [])
 
-    console.log('PendingMaintenance pendingMaintenanceItems:', pendingMaintenanceItems)
-    // console.log('PendingMaintenance pendingMaintenanceItems:', pendingMaintenanceItems[0].user)
-    // console.log('PendingMaintenance auth.user._id:', auth.user._id)
-    console.log('PendingMaintenance auth.user._id', auth.user._id)
+    const [hidden, setHidden] = useState(true);
+    const [key, setKey] = useState(null);
+
+    function renderForm(e) {
+        console.log('renderForm hidden 1:', hidden)
+        e.preventDefault();
+        console.log('Pending Maintenance renderForm triggered')
+        const key = e.currentTarget.getAttribute("data-index");
+        setKey(key);
+        setHidden(!hidden);
+        console.log('renderForm hidden 2:', hidden)
+    }
 
     return (
         <Fragment>
             <Navbar />
-            <div>hello there {auth.user._id}</div>
-            {pendingMaintenanceItems.map(item => {
-                console.log('item:', item)
+            <h1 className="pending-maintenance-h1">Pending Maintenance Items</h1>
+            {pendingMaintenanceItems.map((item, index) => {
                 if (auth.user._id === item.user) {
                     return (
-                        <ul>
-                            <li>{item.maintenanceType}</li>
-                            <li>{item.user}</li>
-                        </ul>
+                        <div 
+                            className={!hidden && key === `${index}` ? "maintenance-item-expanded" : "maintenance-item"}
+                            key={index}
+                            onClick={hidden ? renderForm : undefined}
+                        >
+                            <div className="flex-container">
+                                <img src={light} className="icon" />
+                                <div className="flex-sub-container">
+                                    <p className="maintenance-task">{item.maintenanceType}</p>
+                                    <p className="schedule-task">Task Completed</p>
+                                </div>
+                            </div>
+                            {!hidden && key === `${index}` && (
+                                <Fragment>
+                                    <div>add to completed will go here</div>
+                                    {/*<AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />*/}
+                                </Fragment>
+                            )}
+                        </div>
                     )
                 }
             })}
@@ -34,7 +57,6 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
 }
 
 const mapStateToProps = state => {
-    console.log('mapStateToProps state:', state)
     return ({
     auth: state.auth,
     pendingMaintenanceItems: state.maintenance.pendingMaintenanceItems
@@ -45,4 +67,3 @@ export default connect(
     mapStateToProps,
     { getPendingMaintenance }
 )(PendingMaintenance);
-// export default connect(mapStateToProps, { getPendingMaintenance })(PendingMaintenance);

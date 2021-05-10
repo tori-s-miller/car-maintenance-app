@@ -11,19 +11,14 @@ import {
 
 // Get Pending Maintenance
 export const getPendingMaintenance = () => async dispatch => {
-    console.log('getPendingMaintenance ran')
-    console.log('getPendingMaintenance dispatch:', dispatch)
     try {
         const res = await axios.get('/api/pendingmaintenance')
-        console.log('getPendingMaintenance res:', res)
-        console.log('getPendingMaintenance GET_MAINTENANCE:', GET_MAINTENANCE)
 
         dispatch({
             type: GET_MAINTENANCE,
             payload: res.data
         });
     } catch (err) {
-        console.log('getPendingMaintenance catch err:', err)
         dispatch({
             type: MAINTENANCE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -33,7 +28,6 @@ export const getPendingMaintenance = () => async dispatch => {
 
 // Add Pending Maintenance
 export const addPendingMaintenance = (formData, history) => async dispatch => {
-    console.log('history:', history)
     try {
         const config = {
             headers: {
