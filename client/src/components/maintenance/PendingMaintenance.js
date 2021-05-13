@@ -35,7 +35,9 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
             <Navbar />
             <h1 className="pending-maintenance-h1">Pending Maintenance Items</h1>
             {pendingMaintenanceItems.map((item, index) => {
-                console.log('index:', index)
+                console.log('item:', item)
+                let date = item.date.slice(0, 10)
+                console.log('date:', date)
                 if (auth.user._id === item.user) {
                     return (
                         <div 
@@ -48,12 +50,9 @@ const PendingMaintenance = ({ getPendingMaintenance, auth, pendingMaintenanceIte
                                 <img src={light} className="icon" />
                                 <div className="flex-sub-container">
                                     <p className="maintenance-task">{item.maintenanceType}</p>
-                                    <p className="maintenance-task">{item.date}</p>
+                                    <p className="maintenance-task">Complete on: {date}</p>
                                     <p className="maintenance-task">{item.notes}</p>
-                                    {/* after clicking on "task completed", hide that text
-                                    and change to "Add to completed maintenance?" with
-                                    an "ok" button and a cancel button */}
-                                    {hidden && <p className="schedule-task">Task Completed</p>}
+                                    {key !== `${index}` && <p className="schedule-task">Task Completed?</p>}
                                     {!hidden && key === `${index}` && (
                                         <Fragment>
                                             <p>Add to Completed Maintenance?</p>

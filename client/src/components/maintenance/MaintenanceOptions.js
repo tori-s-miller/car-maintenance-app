@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 
 function MaintenanceOptions(props) {
 
-    console.log('MaintenanceOptions props:', props)
-
     const monthlyItems = [
         'Check Lights', 
         'Tire inflation and tread',
@@ -59,7 +57,6 @@ function MaintenanceOptions(props) {
     const [child, setChild] = React.useState(false);
     const handleChildState = React.useCallback(childState => {
       setChild(childState);
-      console.log('MaintenanceOptions childState:', childState)
     }, []);
 
 
