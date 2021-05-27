@@ -96,7 +96,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                                         <p>Add to Completed Maintenance?</p>
                                         <button onClick={addCompletedMaintenance(currentMaintenanceItem)}>YES</button>
                                         <button onClick={cancelButton}>CANCEL</button> */}
-                                        <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} />
+                                        <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
                                     </div>
                                 )}
                             </div>

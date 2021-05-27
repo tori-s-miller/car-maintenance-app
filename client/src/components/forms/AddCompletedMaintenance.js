@@ -11,10 +11,12 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
     today = mm + '/' + dd + '/' + yyyy;
 
     const [formData, setFormData] = useState({
-        maintenanceType: item,
+        maintenanceType: item.maintenanceType,
         date: today,
-        notes: ''
+        notes: item.notes
     });
+
+    console.log('AddCompletedMaintenance item:', item)
 
     const { maintenanceType, date, notes } = formData;
 
@@ -38,6 +40,7 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
             <form className="maintenance-item-form" onSubmit={e => {
                 e.preventDefault();
                 addCompletedMaintenance(formData, history);
+                console.log('action formData:', formData)
                 renderForm(e);
                 }}>
                 <label htmlFor="date" className="date-label">Add to Completed Maintenance?</label>
