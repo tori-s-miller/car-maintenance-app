@@ -1,6 +1,7 @@
 import {
     ADD_MAINTENANCE,
     GET_MAINTENANCE,
+    DELETE_MAINTENANCE,
     ADD_COMPLETED_MAINTENANCE,
     GET_COMPLETED_MAINTENANCE,
     MAINTENANCE_ERROR
@@ -28,6 +29,12 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 pendingMaintenanceItems: [...state.pendingMaintenanceItems, payload],
+                loading: false
+            };
+        case ADD_COMPLETED_MAINTENANCE:
+            return {
+                ...state,
+                completedMaintenanceItems: [...state.completedMaintenanceItems, payload],
                 loading: false
             };
         case GET_COMPLETED_MAINTENANCE:

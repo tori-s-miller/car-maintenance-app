@@ -12,10 +12,11 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
-    const [currentMaintenanceItem, setCurrentMaintenanceItem] = useState({
-        maintenanceType: '',
-        date: '',
-    });
+    const [currentRenderedItem, setCurrentRenderedItem] = useState(null);
+    // const [currentMaintenanceItem, setCurrentMaintenanceItem] = useState({
+    //     maintenanceType: '',
+    //     date: '',
+    // });
 
     const [child, setChild] = React.useState(false);
     const handleChildState = React.useCallback(childState => {
@@ -24,11 +25,9 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     function renderForm(e) {
         e.preventDefault();
-        console.log('renderForm ran');
         const key = e.currentTarget.getAttribute("data-index");
         setKey(key);
         setHidden(!hidden);
-        console.log('renderForm e.currentTarget:', e.currentTarget);
         // console.log('renderForm e.currentTarget.firstChild:', e.currentTarget.firstChild);
         // console.log('renderForm e.currentTarget.firstChild.firstChild:', e.currentTarget.firstChild.firstChild);
         // console.log('renderForm e.currentTarget.firstChild.firstChild.textContent:', e.currentTarget.firstChild.firstChild.textContent);
@@ -45,8 +44,6 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
         // });
     }
 
-    console.log('currentMaintenanceItem:', currentMaintenanceItem)
-
     function cancelButton(e) {
         e.preventDefault();
         setKey(null);
@@ -54,9 +51,9 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     }
 
 
-    const [currentCompletedItem, setCurrentCompletedItem] = useState(null)
+    // const [currentCompletedItem, setCurrentCompletedItem] = useState(null)
 
-    console.log('currentCompletedItem:', currentCompletedItem)
+    // console.log('PendingMaintenance currentCompletedItem:', currentCompletedItem)
 
     // const [formData, setFormData] = useState({
     //     maintenanceType: item,
@@ -64,7 +61,6 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     //     notes: ''
     // });
 
-    console.log('HELLO currentMaintenanceItem:', currentMaintenanceItem)
 
     return (
         <Fragment>
