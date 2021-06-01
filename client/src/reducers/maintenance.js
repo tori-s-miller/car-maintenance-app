@@ -8,7 +8,6 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    pendingMaintenance: null,
     pendingMaintenanceItems: [],
     completedMaintenanceItems: [],
     loading: true,
@@ -16,6 +15,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+    console.log('reducer state:', state)
     const { type, payload } = action;
 
     switch(type) {

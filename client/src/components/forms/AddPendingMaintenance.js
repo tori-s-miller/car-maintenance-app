@@ -14,10 +14,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
     const { maintenanceType, date, notes } = formData;
 
     const onChange = e => {
-        console.log('onChange e.target.name:', e.target.name);
-        console.log('onChange e.target.value:', e.target.value);
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log('formData:', formData);
     }
 
     const [state, setState] = React.useState("");

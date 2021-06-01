@@ -16,17 +16,14 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
         notes: item.notes
     });
 
-
-    console.log('AddCompletedMaintenance item:', item)
-
     const { maintenanceType, date, notes } = formData;
 
-    const onChange = e => {
-        console.log('onChange e.target.name:', e.target.name);
-        console.log('onChange e.target.value:', e.target.value);
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log('formData:', formData);
-    }
+    // const onChange = e => {
+    //     console.log('onChange e.target.name:', e.target.name);
+    //     console.log('onChange e.target.value:', e.target.value);
+    //     setFormData({ ...formData, [e.target.name]: e.target.value });
+    //     console.log('formData:', formData);
+    // }
 
     const [state, setState] = React.useState("");
     React.useEffect(() => {
@@ -44,8 +41,6 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
                 {/* console.log('action formData:', formData)
                 console.log('addCompletedMaintenance ran') */}
                 renderForm(e);
-                console.log('item:', item)
-                console.log('item._id:', item._id)
                 deletePendingMaintenanceForCompleted(item._id);
                 }}>
                 <label htmlFor="date" className="date-label">Add to Completed Maintenance?</label>
@@ -58,8 +53,13 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
     )
 }
 
-const mapStateToProps = state => ({
-    completedMaintenanceItems: state.completedMaintenanceItems
-})
+const mapStateToProps = state => {
+    console.log('AddCompletedMaintenance state:', state)
+    return (
+        ({
+            completedMaintenanceItems: state.completedMaintenanceItems
+        })
+    )    
+}
 
 export default connect(mapStateToProps, { addCompletedMaintenance, deletePendingMaintenanceForCompleted })(AddCompletedMaintenance);
