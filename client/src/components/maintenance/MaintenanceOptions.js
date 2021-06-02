@@ -191,8 +191,11 @@ function MaintenanceOptions(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    pendingMaintenance: state.pendingMaintenance
-})
+const mapStateToProps = state => {
+    console.log('Maintenance Options state:', state)
+    return ({
+        pendingMaintenance: state.pendingMaintenance
+    })
+}
 
 export default connect(mapStateToProps)(MaintenanceOptions);

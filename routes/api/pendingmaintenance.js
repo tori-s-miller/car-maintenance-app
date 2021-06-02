@@ -25,7 +25,27 @@ router.post('/', [ auth,
         }
     
     try {
-        const user = await (await User.findById(req.user.id)).isSelected('-password');
+        // const user = await (await User.findById(req.user.id)).isSelected('-password');
+        // console.log('pendingmaintenancde user:', user)
+
+        // if(profile) {
+            // Update profile
+        //     profile = await Profile.findOneAndUpdate(
+        //         { user: req.user.id }, 
+        //         { $set: profileFields },
+        //         { new: true }
+        //     );
+
+        //     return res.json(profile);
+        // }
+
+        console.log('User:', User)
+        console.log('PendingMaintenance:', PendingMaintenance)
+        console.log('req.user:', req.user)
+        console.log('pendingmaintenance req.body:', req.body)
+
+        // let currentUser = await User.findOne({user: req.body.id});
+        // console.log('currentUser:', currentUser)
 
         const newPendingMaintenance = new PendingMaintenance({
             maintenanceType: req.body.maintenanceType,

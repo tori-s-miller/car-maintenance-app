@@ -38,6 +38,7 @@ export const addPendingMaintenance = (formData, history) => async dispatch => {
         }
 
         const res = await axios.post('/api/pendingmaintenance', formData, config);
+        console.log('addPendingMaintenance res:', res)
 
         dispatch({
             type: ADD_MAINTENANCE,
