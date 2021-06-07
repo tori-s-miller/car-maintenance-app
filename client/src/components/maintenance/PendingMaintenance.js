@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Navbar from '../layout/Navbar';
-import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/maintenance';
+import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
 import { connect } from 'react-redux';
 import AddCompletedMaintenance from '../forms/AddCompletedMaintenance';
 

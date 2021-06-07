@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/maintenance';
+import { addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
 
 const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild, renderForm, item, deletePendingMaintenanceForCompleted }) => {
 

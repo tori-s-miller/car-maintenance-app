@@ -20,8 +20,9 @@ app.get('/', (req, res) => {
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/pendingmaintenance', require('./routes/api/pendingmaintenance'));
-app.use('/api/completedmaintenance', require('./routes/api/completedmaintenance'));
+app.use('/api/account', require('./routes/api/account'));
+// app.use('/api/pendingmaintenance', require('./routes/api/pendingmaintenance'));
+// app.use('/api/completedmaintenance', require('./routes/api/completedmaintenance'));
 
 // Serve static assets in production
 if(process.env.NODE_ENV === 'production') {

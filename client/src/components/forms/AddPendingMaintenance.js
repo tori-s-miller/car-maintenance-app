@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addPendingMaintenance } from '../../actions/maintenance';
+import { addPendingMaintenance } from '../../actions/account';
 
 const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm, item }) => {
 

@@ -1,12 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserProfileSchema = new Schema({
+const AccountSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: 'user'
     },
     pendingMaintenance: {
+        maintenanceType: {
+            type: String,
+            // required: true
+        },
+        date: {
+            type: Date,
+            // required: true
+        },
+        notes: {
+            type: String,
+            // required: true
+        }
+    },
+    completedMaintenance: {
         maintenanceType: {
             type: String,
             // required: true
@@ -22,4 +36,4 @@ const UserProfileSchema = new Schema({
     }
 });
 
-module.exports = UserProfile = mongoose.model('userProfile', UserProfileSchema);
+module.exports = Account = mongoose.model('account', AccountSchema);
