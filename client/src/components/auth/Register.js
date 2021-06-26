@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
+// import { createAccount } from '../../actions/account';
 import PropTypes from 'prop-types';
 import car from '../img/car-illustration.svg';
 
@@ -15,10 +16,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         // this is our initial state
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        pendingMaintenance: [],
+        completedMaintenance: []
     });
 
-    const { email, password, password2 } = formData;
+    // const accountData = {
+    //     pendingMaintenance: '',
+    //     completedMaintenance: ''  
+    // }
+
+    const { email, password, password2, pendingMaintenance, completedMaintenance } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,12 +37,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         if(password !== password2) {
             setAlert('Passwords do not match', 'danger');
         } else {
-            console.log('formData:', formData)
-            register({ email, password });
+            register({ email, password, pendingMaintenance, completedMaintenance });
         }
     }
-
-    console.log('isAuthenticated:', isAuthenticated)
 
     if(isAuthenticated) {
         return <Redirect to="/maintenanceoptions" />

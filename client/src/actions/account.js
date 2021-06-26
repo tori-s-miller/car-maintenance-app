@@ -7,6 +7,42 @@ import {
     ACCOUNT_ERROR
 } from './types';
 
+// Create an account
+// passing in a history object, which has a method called "push", that will redirect to a client-side route
+// export const createAccount = (accountData, history) => async dispatch => {
+//     console.log('createAccount action ran')
+//     try {
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         }
+
+//         const res = await axios.post('/api/account', accountData, config);
+
+//         dispatch({
+//             type: GET_ACCOUNT,
+//             payload: res.data
+//         });
+
+//         // dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
+ 
+//         history.push('/maintenanceoptions');
+
+//     } catch (err) {
+//         const errors = err.response.data.errors;
+
+//         if(errors) {
+//             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+//         }
+
+//         dispatch({
+//             type: ACCOUNT_ERROR,
+//             payload: { msg: err.response.statusText, status: err.response.status }
+//         }); 
+//     }
+// }
+
 // Get Pending Maintenance
 export const getPendingMaintenance = () => async dispatch => {
     try {

@@ -21,6 +21,8 @@ router.post('/', [
     ], 
     async (req, res) => {
         console.log('users async ran')
+        console.log('users route req.body:', req.body)
+
         // console.log('req:', req)
         // console.log('res:', res)
         const errors = validationResult(req);
@@ -31,7 +33,9 @@ router.post('/', [
         const { 
             // name, 
             email, 
-            password 
+            password,
+            pendingMaintenance,
+            completedMaintenance 
         } = req.body;
 
         try {
@@ -45,8 +49,12 @@ router.post('/', [
             user = new User({
                 // name,
                 email,
-                password
+                password,
+                pendingMaintenance,
+                completedMaintenance
             });
+
+            console.log('users.js user:', user)
 
             // Encrypt password
             const salt = await bcrypt.genSalt(10);

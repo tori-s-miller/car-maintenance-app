@@ -7,6 +7,41 @@ const Account = require('../../models/Account');
 const User = require('../../models/User');
 
 
+// @route   POST api/account
+// @desc    Create user account
+// @access  Private
+router.post('/', [ auth ], 
+    async (req, res) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        // const {
+        //     dogName
+        // } = req.body;
+
+        // Build account object
+        const accountFields = {};
+        accountFields.user = req.user.id;
+        // if(dogName) profileFields.dogName = dogName;
+
+        try {
+            let account = await Account.findOne({ user: req.user.id });
+
+            // Create account
+            account = new Account(accountFields);
+
+            await account.save();
+            res.json(account);
+        } catch(err) {
+            console.error(err.message);
+            res.status(500).send('Server Error');
+        }
+    }
+)
+
+
 // @route POST api/account/pendingmaintenance
 // @desc Create pending maintenance
 // @access Private
