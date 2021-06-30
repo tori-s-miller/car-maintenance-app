@@ -29,6 +29,7 @@ router.post('/', [
     check('password', 'Password is required').exists()
     ], 
     async (req, res) => {
+        console.log('auth.js post auth ran');
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -37,6 +38,7 @@ router.post('/', [
         const { email, password } = req.body;
 
         try {
+            console.log('auth.js try block ran')
             // See if user exists
             let user = await User.findOne({ email });
 

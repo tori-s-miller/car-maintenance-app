@@ -20,18 +20,12 @@ router.post('/', [
         .isLength({ min: 6 })
     ], 
     async (req, res) => {
-        console.log('users async ran')
-        console.log('users route req.body:', req.body)
-
-        // console.log('req:', req)
-        // console.log('res:', res)
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
         const { 
-            // name, 
             email, 
             password,
             pendingMaintenance,
@@ -47,7 +41,6 @@ router.post('/', [
             }
 
             user = new User({
-                // name,
                 email,
                 password,
                 pendingMaintenance,

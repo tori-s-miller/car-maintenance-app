@@ -45,8 +45,9 @@ import {
 
 // Get Pending Maintenance
 export const getPendingMaintenance = () => async dispatch => {
+    console.log('getPendingMaintenance action ran');
     try {
-        const res = await axios.get('/api/account/pendingmaintenance')
+        const res = await axios.get('/api/user/pendingmaintenance')
 
         dispatch({
             type: GET_ACCOUNT,
@@ -62,6 +63,8 @@ export const getPendingMaintenance = () => async dispatch => {
 
 // Add Pending Maintenance
 export const addPendingMaintenance = (formData, history) => async dispatch => {
+    console.log('addPendingMaintenance action ran');
+    console.log('addPendingMaintenance formData:', formData);
     try {
         const config = {
             headers: {
@@ -71,6 +74,9 @@ export const addPendingMaintenance = (formData, history) => async dispatch => {
 
         const res = await axios.post('/api/account/pendingmaintenance', formData, config);
         console.log('addPendingMaintenance res:', res)
+        console.log('addPendingMaintenance res.data:', res.data)
+        console.log('addPendingMaintenance try formData:', formData)
+        console.log('addPendingMaintenance config:', config)
 
         dispatch({
             type: UPDATE_ACCOUNT,

@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
-const Account = require('../../models/Account');
+// const Account = require('../../models/Account');
 const User = require('../../models/User');
 
 
@@ -74,16 +74,24 @@ router.post('/pendingmaintenance', [ auth,
         }
     
     try {
+        console.log('try block req.body:', req.body)
+        // console.log('try block req:', req)
         console.log('try block req.user:', req.user)
         console.log('try block req.user.id:', req.user.id)
-        const account = await Account.findOne({ user: req.user.id });
-        console.log('pendingmaintenancde account:', account)
+        console.log('try block User:', User)
+        const { id } = req.user.id;
+        console.log('destructured id:', id)
+        const user = await User.findOne({ id });
+        // const user = await User.findById({ user: req.user.id });
+        console.log('pendingmaintenancde user:', user)
+        console.log('pendingmaintenancde user.pendingMaintenance:', user.pendingMaintenance)
+        console.log('pendingmaintenancde newPendingMaintenance:', newPendingMaintenance)
 
-        account.pendingmaintenance.push(newPendingMaintenance);
+        user.pendingMaintenance.push(newPendingMaintenance);
 
-        await account.save();
+        await user.save();
 
-        res.json(account);
+        res.json(user);
 
     } catch (err) {
         console.error(err.message);
@@ -93,7 +101,7 @@ router.post('/pendingmaintenance', [ auth,
     
 });
 
-// @route GET api/pendingmaintenance
+// @route GET api/account/pendingmaintenance
 // @desc Get all pending maintenance
 // @access Private
 router.get('/', auth, async (req, res) => {

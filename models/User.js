@@ -22,34 +22,6 @@ const UserSchema = new mongoose.Schema({
         type: Array,
         required: true
     }
-    // pendingMaintenance: {
-    //     maintenanceType: {
-    //         type: String,
-    //         // required: true
-    //     },
-    //     date: {
-    //         type: Date,
-    //         // required: true
-    //     },
-    //     notes: {
-    //         type: String,
-    //         // required: true
-    //     }
-    // },
-    // completedMaintenance: {
-    //     maintenanceType: {
-    //         type: String,
-    //         // required: true
-    //     },
-    //     date: {
-    //         type: Date,
-    //         // required: true
-    //     },
-    //     notes: {
-    //         type: String,
-    //         // required: true
-    //     }
-    // }
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
