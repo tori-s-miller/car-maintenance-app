@@ -62,9 +62,49 @@ export const getPendingMaintenance = () => async dispatch => {
 }
 
 // Add Pending Maintenance
-export const addPendingMaintenance = (formData, history) => async dispatch => {
+// export const addPendingMaintenance = (formData, history) => async dispatch => {
+//     console.log('addPendingMaintenance action ran');
+//     console.log('addPendingMaintenance formData:', formData);
+//     try {
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         }
+
+//         const res = await axios.post('/api/account/pendingmaintenance', formData, config);
+//         console.log('addPendingMaintenance axios:', axios)
+//         console.log('addPendingMaintenance res:', res)
+//         console.log('addPendingMaintenance res.data:', res.data)
+//         console.log('addPendingMaintenance try formData:', formData)
+//         console.log('addPendingMaintenance config:', config)
+
+//         dispatch({
+//             type: UPDATE_ACCOUNT,
+//             payload: res.data
+//         });
+
+//         dispatch(setAlert('Pending Maintenance Added', 'success'));
+
+//         // history.push('/dashboard');
+//     } catch (err) {
+//         const errors = err.response.data.errors;
+
+//         if(errors) {
+//             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+//         }
+
+//         dispatch({
+//             type: ACCOUNT_ERROR,
+//             payload: { msg: err.response.statusText, status: err.response.status }
+//         }); 
+//     }
+// }
+
+export const addPendingMaintenance = (formData, id, history) => async dispatch => {
     console.log('addPendingMaintenance action ran');
     console.log('addPendingMaintenance formData:', formData);
+    console.log('addPendingMaintenance id:', id);
     try {
         const config = {
             headers: {
@@ -73,6 +113,7 @@ export const addPendingMaintenance = (formData, history) => async dispatch => {
         }
 
         const res = await axios.post('/api/account/pendingmaintenance', formData, config);
+        console.log('addPendingMaintenance axios:', axios)
         console.log('addPendingMaintenance res:', res)
         console.log('addPendingMaintenance res.data:', res.data)
         console.log('addPendingMaintenance try formData:', formData)

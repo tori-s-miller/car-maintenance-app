@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 
 
 function MaintenanceOptions(props) {
+    console.log('MaintenanceOptions props:', props)
+
+    const id = props.id;
+    console.log('MaintenanceOptions id:', id)
 
     const monthlyItems = [
         'Check Lights', 
@@ -78,7 +82,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -103,7 +107,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "threeMonths" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -128,7 +132,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "sixMonths" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -152,7 +156,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "yearly" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -192,10 +196,16 @@ function MaintenanceOptions(props) {
 }
 
 const mapStateToProps = state => {
-    console.log('Maintenance Options state:', state)
-    return ({
-        pendingMaintenance: state.pendingMaintenance
-    })
+    console.log('Maintenance Options state:', state);
+    console.log('Maintenance Options state.pendingMaintenance:', state.pendingMaintenance)
+    console.log('Maintenance Options state.auth.user:', state.auth.user)
+    if(state.auth.user != null) {
+        return ({
+            pendingMaintenance: state.pendingMaintenance,
+            id: state.auth.user._id
+            // pendingMaintenance: state.auth.user.pendingMaintenance
+        })
+    }
 }
 
 export default connect(mapStateToProps)(MaintenanceOptions);

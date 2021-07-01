@@ -17,6 +17,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+    console.log('auth reducer state:', state);
     const { type, payload } = action;
     console.log('auth reducer action:', action)
 

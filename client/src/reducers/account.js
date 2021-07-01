@@ -20,6 +20,7 @@ export default function(state = initialState, action) {
     console.log('account reducer state:', state)
     console.log('account reducer action:', action)
     const { type, payload } = action;
+    console.log('account reducer type:', type)
     console.log('account reducer payload:', payload)
 
     switch(type) {

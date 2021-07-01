@@ -6,7 +6,7 @@ import { login } from '../../actions/auth';
 import car from '../img/car-illustration.svg';
 
 // since the action is a prop, we're going to destructure it so we don't have to do props.login
-const Login = ({ login, isAuthenticated }) => {
+const LoginDemo = ({ login, isAuthenticated }) => {
     // the useState hook: formData is going to be the state, just like:
     // state = { formData: {
     //  } }
@@ -67,7 +67,7 @@ const Login = ({ login, isAuthenticated }) => {
     );
 };
 
-Login.propTypes = {
+LoginDemo.propTypes = {
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool
 }
@@ -76,4 +76,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login })(LoginDemo);
