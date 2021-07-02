@@ -5,7 +5,6 @@ import { addPendingMaintenance } from '../../actions/account';
 
 const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm, item, id }) => {
 
-    console.log('AddPendingMaintenance history:', history)
     console.log('AddPendingMaintenance id:', id)
 
     const [formData, setFormData] = useState({
@@ -32,7 +31,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
                 console.log('maintenance form history:', history)
                 e.preventDefault();
                 // pass in user id to addPendingMaintenance
-                addPendingMaintenance(formData, history);
+                addPendingMaintenance(formData, id, history);
                 renderForm(e);
                 }}>
                 <label htmlFor="date" className="date-label">Date to be completed</label>

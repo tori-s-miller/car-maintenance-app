@@ -54,6 +54,7 @@ router.post('/pendingmaintenance', [ auth,
     // ] 
     ], 
     async (req, res) => {
+        console.log('ACCOUNT PENDINGMAINTENANCE POST RAN')
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -79,12 +80,12 @@ router.post('/pendingmaintenance', [ auth,
         console.log('try block req.user:', req.user)
         console.log('try block req.user.id:', req.user.id)
         console.log('try block User:', User)
-        const { id } = req.user.id;
+        const id = req.user.id;
         console.log('destructured id:', id)
-        const user = await User.findOne({ id });
+        const user = await User.findOne({ _id: id });
         // const user = await User.findById({ user: req.user.id });
         console.log('pendingmaintenancde user:', user)
-        console.log('pendingmaintenancde user.pendingMaintenance:', user.pendingMaintenance)
+        console.log('pendingmaintenancde user._id:', user._id)
         console.log('pendingmaintenancde newPendingMaintenance:', newPendingMaintenance)
 
         user.pendingMaintenance.push(newPendingMaintenance);
