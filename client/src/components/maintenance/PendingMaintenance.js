@@ -9,11 +9,10 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     useEffect(() => {
         getPendingMaintenance();
     }, [])
+    console.log('PendingMaintenance pendingMaintenanceItems pulled from props:', pendingMaintenanceItems)
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
-    console.log('PendingMaintenance hidden:', hidden)
-    console.log('PendingMaintenance key:', key)
 
 
     const [deletedItem, setDeletedItem] = useState(null)
@@ -25,26 +24,9 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     function renderForm(e) {
         e.preventDefault();
-        console.log('renderForm ran');
-        console.log('e.currentTarget.parentNode.parentNode.parentNode:', e.currentTarget.parentNode.parentNode.parentNode)
         const key = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
         setKey(key);
         setHidden(!hidden);
-        
-        // console.log('renderForm e.currentTarget.firstChild:', e.currentTarget.firstChild);
-        // console.log('renderForm e.currentTarget.firstChild.firstChild:', e.currentTarget.firstChild.firstChild);
-        // console.log('renderForm e.currentTarget.firstChild.firstChild.textContent:', e.currentTarget.firstChild.firstChild.textContent);
-        // const currentMaintenanceItemType = e.currentTarget.firstChild.firstChild.textContent;
-        // let today = new Date();
-        // const dd = String(today.getDate()).padStart(2, '0');
-        // const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        // const yyyy = today.getFullYear();
-        // today = mm + '/' + dd + '/' + yyyy;
-        // console.log('today:', today);
-        // setCurrentMaintenanceItem({
-        //     maintenanceType: currentMaintenanceItemType,
-        //     date: today
-        // });
     }
 
     function cancelButton(e) {
@@ -71,44 +53,39 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     return (
         <Fragment>
-            {console.log('Pending Maintenance return ran')}
             <Navbar />
             <h1 className="pending-maintenance-h1">Pending Maintenance Items</h1>
             <p className="pending-maintenance-sort">Sort by:</p>
             <div className="container-pending-maintenance-items">
-            {pendingMaintenanceItems.map((item, index) => {
-                let date = item.date.slice(0, 10)
-                if (auth.user._id === item.user) {
-                    return (
-                        <div 
-                            className={!hidden && key === `${index}` ? "pending-maintenance-item-expanded" : "pending-maintenance-item"}
-                            key={index}
-                            data-index={index}
-                            /* onClick={hidden ? renderForm : undefined} */
-                        >
-                        {console.log('Pending Maintenance sub return ran; item:', item)}
-                            <div className="pending-container">
-                                <p className="pending-maintenance-task">{item.maintenanceType}</p>
-                                <p className="maintenance-date">Scheduled for {date}</p>
-                                {hidden && <p className="maintenance-notes">{item.notes}</p>}
-                                <div className="button-container">
-                                    {key !== `${index}` && <button className="pending-item-complete-button" onClick={hidden ? renderForm : undefined}>Completed</button>}
-                                    {key !== `${index}` && <button className="pending-item-delete-button" onClick={ButtonClick}>Delete</button>}
-                                </div>
-                                {!hidden && key === `${index}` && (
-                                    <div className="add-to-maintenance">
-                                        {/* {console.log('key:', key)}
-                                        <p>Add to Completed Maintenance?</p>
-                                        <button onClick={addCompletedMaintenance(currentMaintenanceItem)}>YES</button>
-                                        <button onClick={cancelButton}>CANCEL</button> */}
-                                        <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
-                                    </div>
-                                )}
+            {pendingMaintenanceItems !== undefined && pendingMaintenanceItems.map((item, index) => {
+                let date = item.date.slice(0, 10);
+                return (
+                    <div 
+                        className={!hidden && key === `${index}` ? "pending-maintenance-item-expanded" : "pending-maintenance-item"}
+                        key={index}
+                        data-index={index}
+                        /* onClick={hidden ? renderForm : undefined} */
+                    >
+                        <div className="pending-container">
+                            <p className="pending-maintenance-task">{item.maintenanceType}</p>
+                            <p className="maintenance-date">Scheduled for {date}</p>
+                            {hidden && <p className="maintenance-notes">{item.notes}</p>}
+                            <div className="button-container">
+                                {key !== `${index}` && <button className="pending-item-complete-button" onClick={hidden ? renderForm : undefined}>Completed</button>}
+                                {key !== `${index}` && <button className="pending-item-delete-button" onClick={ButtonClick}>Delete</button>}
                             </div>
-                            
+                            {!hidden && key === `${index}` && (
+                                <div className="add-to-maintenance">
+                                    {/* 
+                                    <p>Add to Completed Maintenance?</p>
+                                    <button onClick={addCompletedMaintenance(currentMaintenanceItem)}>YES</button>
+                                    <button onClick={cancelButton}>CANCEL</button> */}
+                                    <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                                </div>
+                            )}
                         </div>
-                    )
-                }
+                    </div>
+                )
             })}
             </div>
         </Fragment>
@@ -117,10 +94,11 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
 const mapStateToProps = state => {
     console.log('PendingMaintenance state:', state)
-    return ({
-    auth: state.auth,
-    pendingMaintenanceItems: state.maintenance.pendingMaintenanceItems
-})
+    if(state.account.user != null) {
+        return ({
+            pendingMaintenanceItems: state.account.user.pendingMaintenance
+        });
+    }
 }
 
 export default connect(

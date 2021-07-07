@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
 
-const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild, renderForm, item, deletePendingMaintenanceForCompleted }) => {
+const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild, renderForm, item, deletePendingMaintenanceForCompleted, id }) => {
 
     let today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -16,7 +16,11 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
         notes: item.notes
     });
 
-    const { maintenanceType, date, notes } = formData;
+    console.log('AddCompletedMaintenance formData:', formData)
+    console.log('AddCompletedMaintenance item:', item)
+    console.log('AddCompletedMaintenance id:', id)
+
+    // const { maintenanceType, date, notes } = formData;
 
     // const onChange = e => {
     //     console.log('onChange e.target.name:', e.target.name);
@@ -41,7 +45,7 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
                 {/* console.log('action formData:', formData)
                 console.log('addCompletedMaintenance ran') */}
                 renderForm(e);
-                deletePendingMaintenanceForCompleted(item._id);
+                deletePendingMaintenanceForCompleted(id);
                 }}>
                 <label htmlFor="date" className="date-label">Add to Completed Maintenance?</label>
                 {/* <label htmlFor="notes" className="notes-label">Notes</label>

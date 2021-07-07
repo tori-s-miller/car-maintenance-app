@@ -54,39 +54,30 @@ router.post('/pendingmaintenance', [ auth,
     // ] 
     ], 
     async (req, res) => {
-        console.log('ACCOUNT PENDINGMAINTENANCE POST RAN')
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        console.log('pending maintenance req.body:', req.body);
+        console.log('post pendingmaintenance req.body:', req.body)
 
         const {
             maintenanceType,
             date,
-            notes
+            notes,
+            itemID
         } = req.body;
 
         const newPendingMaintenance = {
             maintenanceType,
             date,
-            notes 
+            notes,
+            itemID
         }
     
     try {
-        console.log('try block req.body:', req.body)
-        // console.log('try block req:', req)
-        console.log('try block req.user:', req.user)
-        console.log('try block req.user.id:', req.user.id)
-        console.log('try block User:', User)
         const id = req.user.id;
-        console.log('destructured id:', id)
         const user = await User.findOne({ _id: id });
-        // const user = await User.findById({ user: req.user.id });
-        console.log('pendingmaintenancde user:', user)
-        console.log('pendingmaintenancde user._id:', user._id)
-        console.log('pendingmaintenancde newPendingMaintenance:', newPendingMaintenance)
 
         user.pendingMaintenance.push(newPendingMaintenance);
 
@@ -105,9 +96,11 @@ router.post('/pendingmaintenance', [ auth,
 // @route GET api/account/pendingmaintenance
 // @desc Get all pending maintenance
 // @access Private
-router.get('/', auth, async (req, res) => {
+router.get('/pendingmaintenance', auth, async (req, res) => {
+    console.log('get pendingmaintenance ran')
     try {
-        const pendingMaintenance = await PendingMaintenance.find().sort({ date: -1 });
+        const id = req.user.id;
+        const pendingMaintenance = await User.findOne({ _id: id }).sort({ date: -1 });
         res.json(pendingMaintenance)
     } catch (err) {
         console.error(err.message);
@@ -138,23 +131,27 @@ router.get('/:id', auth, async (req, res) => {
     }
 });
 
-// @route DELETE api/pendingmaintenance/:id
+// @route DELETE api/account/pendingmaintenance/:id
 // @desc Delete a pending maintenance item
 // @access Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/pendingmaintenance/:id', auth, async (req, res) => {
+    console.log('pendingmaintenance delete route ran')
     try {
-        const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
+        const id = req.user.id;
+        const user = await User.findOne({ _id: id });
+        // const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
+        console.log('pending maintenance delete user:', user)
 
-        if(!pendingMaintenance) {
+        if(!user) {
             return res.status(404).json({ msg: 'Pending Maintenance item not found' })
         }
 
         // Check user
-        if(pendingMaintenance.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'User not authorized' });
-        }
+        // if(pendingMaintenance.user.toString() !== req.user.id) {
+        //     return res.status(401).json({ msg: 'User not authorized' });
+        // }
 
-        await pendingMaintenance.remove();
+        // await pendingMaintenance.remove();
 
         res.json({ msg: 'Post removed' });
     } catch (err) {
@@ -169,8 +166,52 @@ router.delete('/:id', auth, async (req, res) => {
 });
 
 
+// @route POST api/account/completedmaintenance
+// @desc Create completed maintenance
+// @access Private
 
+router.post('/completedmaintenance', [ auth, 
+    // [
+    //     check('maintenanceType', 'maintenanceType is required')
+    //         .not()
+    //         .isEmpty()
+    // ] 
+    ], 
+    async (req, res) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
 
+        const {
+            maintenanceType,
+            date,
+            notes
+        } = req.body;
+
+        const newCompletedMaintenance = {
+            maintenanceType,
+            date,
+            notes 
+        }
+    
+    try {
+        const id = req.user.id;
+        const user = await User.findOne({ _id: id });
+
+        user.completedMaintenance.push(newCompletedMaintenance);
+
+        await user.save();
+
+        res.json(user);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+    
+    
+});
 
 
 module.exports = router;

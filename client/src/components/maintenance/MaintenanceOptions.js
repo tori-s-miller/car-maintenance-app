@@ -3,13 +3,12 @@ import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
 import AddPendingMaintenance from '../forms/AddPendingMaintenance';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 
 
 function MaintenanceOptions(props) {
-    console.log('MaintenanceOptions props:', props)
 
     const id = props.id;
-    console.log('MaintenanceOptions id:', id)
 
     const monthlyItems = [
         'Check Lights', 
@@ -196,14 +195,9 @@ function MaintenanceOptions(props) {
 }
 
 const mapStateToProps = state => {
-    console.log('Maintenance Options state:', state);
-    console.log('Maintenance Options state.pendingMaintenance:', state.pendingMaintenance)
-    console.log('Maintenance Options state.auth.user:', state.auth.user)
     if(state.auth.user != null) {
         return ({
-            pendingMaintenance: state.pendingMaintenance,
             id: state.auth.user._id
-            // pendingMaintenance: state.auth.user.pendingMaintenance
         })
     }
 }

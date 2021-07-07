@@ -3,14 +3,13 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addPendingMaintenance } from '../../actions/account';
 
-const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm, item, id }) => {
-
-    console.log('AddPendingMaintenance id:', id)
+const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, renderForm, item }) => {
 
     const [formData, setFormData] = useState({
         maintenanceType: item,
         date: '',
-        notes: ''
+        notes: '',
+        itemID: Math.random()
     });
 
     const { maintenanceType, date, notes } = formData;
@@ -28,10 +27,10 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
     return (
         <Fragment>
             <form className="maintenance-item-form" onSubmit={e => {
-                console.log('maintenance form history:', history)
                 e.preventDefault();
                 // pass in user id to addPendingMaintenance
-                addPendingMaintenance(formData, id, history);
+                addPendingMaintenance(formData, history);
+                {console.log('AddPendingMaintenance submit formData:', formData)}
                 renderForm(e);
                 }}>
                 <label htmlFor="date" className="date-label">Date to be completed</label>
@@ -46,11 +45,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
 }
 
 const mapStateToProps = state => {
-        console.log('AddPendingMaintenance state.auth.user:', state.auth.user)
-        console.log('AddPendingMaintenance state:', state)
         return ({
-        // pendingMaintenance: state.pendingMaintenance
-        // id: state.auth.user._id,
         pendingMaintenance: state.auth.user.pendingMaintenance
     })
 }

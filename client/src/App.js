@@ -31,7 +31,6 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    {console.log('App store:', store)}
     <Router>
       <Fragment>
         <Route exact path="/" component={Landing} />
@@ -42,7 +41,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/login-demo" component={LoginDemo} />
             <PrivateRoute exact path="/maintenanceoptions" component={MaintenanceOptions} />
-            <PrivateRoute exact path="/pendingmaintenance" component={PendingMaintenance} />
+            <PrivateRoute exact path="/account/pendingmaintenance" component={PendingMaintenance} />
           </Switch>
         </section>
       </Fragment>

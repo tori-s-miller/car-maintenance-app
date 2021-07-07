@@ -47,8 +47,6 @@ router.post('/', [
                 completedMaintenance
             });
 
-            console.log('users.js user:', user)
-
             // Encrypt password
             const salt = await bcrypt.genSalt(10);
 

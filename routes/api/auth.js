@@ -12,7 +12,6 @@ const User = require('../../models/User');
 // @desc    Test route
 // @access  Private
 router.get('/', auth, async (req, res) => {
-    console.log('AUTH GET RAN')
     try {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
@@ -30,7 +29,6 @@ router.post('/', [
     check('password', 'Password is required').exists()
     ], 
     async (req, res) => {
-        console.log('AUTH POST RAN')
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -39,10 +37,8 @@ router.post('/', [
         const { email, password } = req.body;
 
         try {
-            console.log('auth.js try block ran')
             // See if user exists
             let user = await User.findOne({ email });
-            console.log('auth.js user:', user)
 
             if(!user) {
                 return res
@@ -63,8 +59,6 @@ router.post('/', [
                     id: user.id
                 },
             }
-
-            console.log('auth.js route payload:', payload)
 
             // Return jsonwebtoken
             jwt.sign(

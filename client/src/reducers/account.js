@@ -4,12 +4,6 @@ import {
     ACCOUNT_ERROR
 } from '../actions/types';
 
-// const initialState = {
-//     account: null,
-//     loading: true,
-//     error: {}
-// }
-
 const initialState = {
     user: null,
     loading: true,
@@ -17,20 +11,11 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-    console.log('account reducer state:', state)
-    console.log('account reducer action:', action)
     const { type, payload } = action;
-    console.log('account reducer type:', type)
+    console.log('account reducer state:', state)
     console.log('account reducer payload:', payload)
 
     switch(type) {
-        // case GET_ACCOUNT:
-        // case UPDATE_ACCOUNT:
-        //     return {
-        //         ...state,
-        //         account: payload,
-        //         loading: false
-        //     };
         case GET_ACCOUNT:
             case UPDATE_ACCOUNT:
                 return {
@@ -43,7 +28,7 @@ export default function(state = initialState, action) {
                 ...state,
                 error: payload,
                 loading: false,
-                account: null
+                user: null
             };
         default:
             return state;

@@ -46,7 +46,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </li>
         <li className="nav-link-2">
           <NavLink 
-            to="/pendingmaintenance"
+            to="/account/pendingmaintenance"
             activeStyle={{
               color: "#008CC5"
             }}
