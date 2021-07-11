@@ -135,16 +135,28 @@ router.get('/:id', auth, async (req, res) => {
 // @desc Delete a pending maintenance item
 // @access Private
 router.delete('/pendingmaintenance/:id', auth, async (req, res) => {
-    console.log('pendingmaintenance delete route ran')
+    console.log('pendingmaintenance delete route req.user:', req.user)
+    console.log('pendingmaintenance delete route req.params:', req.params)
     try {
-        const id = req.user.id;
-        const user = await User.findOne({ _id: id });
-        // const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
-        console.log('pending maintenance delete user:', user)
 
-        if(!user) {
-            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
-        }
+        // getting the logged in user
+        const user = await User.findOne({ _id: req.user.id });
+        console.log('delete user:', user)
+        console.log('delete req.params.id:', req.params.id)
+
+        // Get remove index
+        const removeIndex = user.pendingMaintenance.map(item => item._id).indexOf(req.params.id);
+        console.log('removeIndex:', removeIndex);
+
+        // // splicing out the index
+        user.pendingMaintenance.splice(removeIndex, 1);
+        console.log('delete user after splice:', user)
+
+
+        await user.save();
+
+        res.json(user);
+        
 
         // Check user
         // if(pendingMaintenance.user.toString() !== req.user.id) {
@@ -153,13 +165,13 @@ router.delete('/pendingmaintenance/:id', auth, async (req, res) => {
 
         // await pendingMaintenance.remove();
 
-        res.json({ msg: 'Post removed' });
+        // res.json({ msg: 'Post removed' });
     } catch (err) {
         console.error(err.message);
 
-        if(err.kind === 'ObjectId') {
-            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
-        }
+        // if(err.kind === 'ObjectId') {
+        //     return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        // }
 
         res.status(500).send('Server Error');
     }

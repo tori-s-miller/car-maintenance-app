@@ -28,7 +28,6 @@ export const getPendingMaintenance = () => async dispatch => {
 
 
 export const addPendingMaintenance = (formData, id) => async dispatch => {
-    console.log('addPendingMaintenance formData:', formData)
     try {
         const config = {
             headers: {
@@ -91,8 +90,8 @@ export const deletePendingMaintenanceForCompleted = id => async dispatch => {
         console.log('deletePendingMaintenance ran')
         try {
             console.log('deletePendingMaintenance try ran')
-            console.log('deletePendingMaintenance id:', id)
             const res = await axios.delete(`/api/account/pendingmaintenance/${id}`);
+            console.log('deletePendingMaintenanceForCompleted res:', res)
     
             dispatch({
                 type: UPDATE_ACCOUNT,

@@ -13,7 +13,6 @@ const initialState = {
 export default function(state = initialState, action) {
     const { type, payload } = action;
     console.log('account reducer state:', state)
-    console.log('account reducer payload:', payload)
 
     switch(type) {
         case GET_ACCOUNT:

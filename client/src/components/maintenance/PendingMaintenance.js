@@ -9,7 +9,6 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     useEffect(() => {
         getPendingMaintenance();
     }, [])
-    console.log('PendingMaintenance pendingMaintenanceItems pulled from props:', pendingMaintenanceItems)
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
@@ -93,7 +92,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 }
 
 const mapStateToProps = state => {
-    console.log('PendingMaintenance state:', state)
+    console.log('PendingMaintenance mapStateToProps state:', state)
     if(state.account.user != null) {
         return ({
             pendingMaintenanceItems: state.account.user.pendingMaintenance
