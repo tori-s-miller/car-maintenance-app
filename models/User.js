@@ -10,6 +10,13 @@ const pendingMaintenanceSchema = mongoose.Schema({
 }, 
 { versionKey: false });
 
+const completedMaintenanceSchema = mongoose.Schema({
+    maintenanceType: String,
+    date: Date,
+    notes: String
+}, 
+{ versionKey: false });
+
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -25,10 +32,7 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
     pendingMaintenance: [pendingMaintenanceSchema],
-    completedMaintenance: {
-        type: Array,
-        required: true
-    }
+    completedMaintenance: [completedMaintenanceSchema]
 },
 { versionKey: false });
 

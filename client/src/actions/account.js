@@ -112,13 +112,17 @@ export const deletePendingMaintenanceForCompleted = id => async dispatch => {
 // Get Completed Maintenance
 export const getCompletedMaintenance = () => async dispatch => {
     try {
+        console.log('getCompletedMaintenance try block ran')
         const res = await axios.get('/api/account/completedmaintenance')
+        console.log('getCompletedMaintenance res.data:', res.data)
+        console.log('getCompletedMaintenance res:', res)
 
         dispatch({
             type: GET_ACCOUNT,
             payload: res.data
         });
     } catch (err) {
+        console.log('getCompletedMaintenance catch err:', err)
         dispatch({
             type: ACCOUNT_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }

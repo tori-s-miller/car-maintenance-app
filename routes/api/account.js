@@ -111,25 +111,25 @@ router.get('/pendingmaintenance', auth, async (req, res) => {
 // @route GET api/pendingmaintenance/:id
 // @desc Get a pending maintenance item by id
 // @access Private
-router.get('/:id', auth, async (req, res) => {
-    try {
-        const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
+// router.get('/:id', auth, async (req, res) => {
+//     try {
+//         const pendingMaintenance = await PendingMaintenance.findById(req.params.id);
         
-        if(!pendingMaintenance) {
-            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
-        }
+//         if(!pendingMaintenance) {
+//             return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+//         }
         
-        res.json(pendingMaintenance)
-    } catch (err) {
-        console.error(err.message);
+//         res.json(pendingMaintenance)
+//     } catch (err) {
+//         console.error(err.message);
 
-        if(err.kind === 'ObjectId') {
-            return res.status(404).json({ msg: 'Pending Maintenance item not found' })
-        }
+//         if(err.kind === 'ObjectId') {
+//             return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+//         }
 
-        res.status(500).send('Server Error');
-    }
-});
+//         res.status(500).send('Server Error');
+//     }
+// });
 
 // @route DELETE api/account/pendingmaintenance/:id
 // @desc Delete a pending maintenance item
@@ -178,6 +178,26 @@ router.delete('/pendingmaintenance/:id', auth, async (req, res) => {
 });
 
 
+// @route GET api/account/completedmaintenance
+// @desc Get all completed maintenance
+// @access Private
+router.get('/completedmaintenance', auth, async (req, res) => {
+    console.log('get completedmaintenance ran')
+    try {
+        console.log('get completedmaintenance try block ran')
+        const id = req.user.id;
+        console.log('get completedmaintenance id:', id)
+        const completedMaintenance = await User.findOne({ _id: id }).sort({ date: -1 });
+        console.log('get completedmaintenance completedMaintenance:', completedMaintenance)
+        res.json(completedMaintenance)
+    } catch (err) {
+        console.log('get completedmaintenance error block ran')
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
 // @route POST api/account/completedmaintenance
 // @desc Create completed maintenance
 // @access Private
@@ -190,6 +210,7 @@ router.post('/completedmaintenance', [ auth,
     // ] 
     ], 
     async (req, res) => {
+        console.log('completedmaintenance async ran')
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });

@@ -75,10 +75,6 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                             </div>
                             {!hidden && key === `${index}` && (
                                 <div className="add-to-maintenance">
-                                    {/* 
-                                    <p>Add to Completed Maintenance?</p>
-                                    <button onClick={addCompletedMaintenance(currentMaintenanceItem)}>YES</button>
-                                    <button onClick={cancelButton}>CANCEL</button> */}
                                     <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
                                 </div>
                             )}

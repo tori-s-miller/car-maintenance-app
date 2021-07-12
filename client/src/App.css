@@ -482,9 +482,9 @@ input {
 }
 
 
-/* PENDING MAINTENANCE */
+/* PENDING & COMPLETED MAINTENANCE */
 
-.pending-maintenance-h1 {
+.pending-maintenance-h1, .completed-maintenance-h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1.3em;
@@ -500,7 +500,7 @@ input {
   margin-left: 20px;
 }
 
-.container-pending-maintenance-items {
+.container-pending-maintenance-items, .container-completed-maintenance-items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 5px;
@@ -508,7 +508,7 @@ input {
   margin: 10px;
 }
 
-.pending-maintenance-item, .pending-maintenance-item-expanded {
+.pending-maintenance-item, .pending-maintenance-item-expanded, .completed-maintenance-item {
   background-color: #fff;
   margin: 10px;
   width: 300px;

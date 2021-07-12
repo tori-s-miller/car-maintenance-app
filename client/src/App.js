@@ -8,6 +8,7 @@ import LoginDemo from './components/auth/LoginDemo';
 import Alert from './components/layout/Alert';
 import MaintenanceOptions from './components/maintenance/MaintenanceOptions';
 import PendingMaintenance from './components/maintenance/PendingMaintenance';
+import CompletedMaintenance from './components/maintenance/CompletedMaintenance';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Redux
@@ -42,6 +43,7 @@ const App = () => {
             <Route exact path="/login-demo" component={LoginDemo} />
             <PrivateRoute exact path="/maintenanceoptions" component={MaintenanceOptions} />
             <PrivateRoute exact path="/account/pendingmaintenance" component={PendingMaintenance} />
+            <PrivateRoute exact path="/account/completedmaintenance" component={CompletedMaintenance} />
           </Switch>
         </section>
       </Fragment>
