@@ -9,6 +9,10 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
         getCompletedMaintenance();
     }, [])
 
+    function deleteCompletedMaintenance() {
+        console.log('button was clicked')
+    }
+
     return (
         <Fragment>
             {console.log('CompletedMaintenance component rendered')}
@@ -29,6 +33,7 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
                             <div className="completed-container">
                                 <p className="pending-maintenance-task">{item.maintenanceType}</p>
                                 <p className="maintenance-date">Completed on {date}</p>
+                                <button className="pending-item-delete-button" onClick={deleteCompletedMaintenance}>Delete</button>
                             </div>
                         </div>
                     )

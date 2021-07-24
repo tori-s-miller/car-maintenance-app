@@ -61,6 +61,7 @@ export const addPendingMaintenance = (formData, id) => async dispatch => {
 
 // Delete Pending Maintenance
 export const deletePendingMaintenance = id => async dispatch => {
+    console.log('deletePendingMaintenance ran')
     console.log('deletePendingMaintenance id:', id)
     if(window.confirm('Are you sure you want to delete this maintenance item?')) {
         console.log('deletePendingMaintenance ran')

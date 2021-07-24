@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Navbar from '../layout/Navbar';
-import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
+import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
 import { connect } from 'react-redux';
 import AddCompletedMaintenance from '../forms/AddCompletedMaintenance';
 
-const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, auth, pendingMaintenanceItems }) => {
+const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, auth, pendingMaintenanceItems, deletePendingMaintenance }) => {
 
     useEffect(() => {
         getPendingMaintenance();
@@ -12,13 +12,14 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
-
+    const [deleteKey, setDeleteKey] = useState(null);
 
     const [deletedItem, setDeletedItem] = useState(null)
 
     const [child, setChild] = React.useState(false);
     const handleChildState = React.useCallback(childState => {
         setChild(childState);
+        console.log('childState:', childState)
     }, []);
 
     function renderForm(e) {
@@ -34,8 +35,12 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
         setHidden(!hidden);
     }
 
-    function ButtonClick() {
-        console.log('button was clicked')
+    function deletePendingMaintenanceClick(e) {
+        // e.preventDefault();
+        const deleteKey = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
+        setDeleteKey(deleteKey);
+        console.log('deletePendingMaintenanceClick deleteKey:', deleteKey)
+        deletePendingMaintenance(deleteKey);
     }
 
 
@@ -68,14 +73,14 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                         <div className="pending-container">
                             <p className="pending-maintenance-task">{item.maintenanceType}</p>
                             <p className="maintenance-date">Scheduled for {date}</p>
-                            {hidden && <p className="maintenance-notes">{item.notes}</p>}
+                            {key !== `${index}` && <p className="maintenance-notes">{item.notes}</p>}
                             <div className="button-container">
                                 {key !== `${index}` && <button className="pending-item-complete-button" onClick={hidden ? renderForm : undefined}>Completed</button>}
-                                {key !== `${index}` && <button className="pending-item-delete-button" onClick={ButtonClick}>Delete</button>}
+                                {key !== `${index}` && <button className="pending-item-delete-button" onClick={deletePendingMaintenanceClick}>Delete</button>}
                             </div>
                             {!hidden && key === `${index}` && (
                                 <div className="add-to-maintenance">
-                                    <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} />
+                                    <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} setKey={setKey} />
                                 </div>
                             )}
                         </div>
@@ -98,5 +103,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getPendingMaintenance, addCompletedMaintenance }
+    { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenance }
 )(PendingMaintenance);
