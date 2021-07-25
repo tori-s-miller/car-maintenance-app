@@ -12,9 +12,10 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
-    const [deleteKey, setDeleteKey] = useState(null);
 
-    const [deletedItem, setDeletedItem] = useState(null)
+    // const [deleteKey, setDeleteKey] = useState(null);
+
+    // const [deletedItem, setDeletedItem] = useState(null)
 
     const [child, setChild] = React.useState(false);
     const handleChildState = React.useCallback(childState => {
@@ -27,6 +28,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
         const key = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
         setKey(key);
         setHidden(!hidden);
+        console.log('renderForm ran')
     }
 
     function cancelButton(e) {
@@ -36,11 +38,17 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     }
 
     function deletePendingMaintenanceClick(e) {
-        // e.preventDefault();
         const deleteKey = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
-        setDeleteKey(deleteKey);
+        // setDeleteKey(deleteKey);
         console.log('deletePendingMaintenanceClick deleteKey:', deleteKey)
-        deletePendingMaintenance(deleteKey);
+        console.log('pendingMaintenanceItems:', pendingMaintenanceItems)
+        pendingMaintenanceItems.map((item, index) => {
+            console.log('mapped deleteKey:', deleteKey)
+            console.log('mapped index:', index)
+            if (index == deleteKey) {
+                deletePendingMaintenance(item._id);
+            }
+        });
     }
 
 
@@ -74,6 +82,8 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                             <p className="pending-maintenance-task">{item.maintenanceType}</p>
                             <p className="maintenance-date">Scheduled for {date}</p>
                             {key !== `${index}` && <p className="maintenance-notes">{item.notes}</p>}
+                            {console.log('current key:', key)}
+                            {console.log('current index:', index)}
                             <div className="button-container">
                                 {key !== `${index}` && <button className="pending-item-complete-button" onClick={hidden ? renderForm : undefined}>Completed</button>}
                                 {key !== `${index}` && <button className="pending-item-delete-button" onClick={deletePendingMaintenanceClick}>Delete</button>}

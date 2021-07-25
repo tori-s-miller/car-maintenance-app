@@ -46,8 +46,8 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
                 {/* console.log('action formData:', formData)
                 console.log('addCompletedMaintenance ran') */}
                 deletePendingMaintenanceForCompleted(id);
-                setKey(null);
                 renderForm(e);
+                setKey(null);
                 }}>
                 <label htmlFor="date" className="date-label">Add to Completed Maintenance?</label>
                 {/* <label htmlFor="notes" className="notes-label">Notes</label>

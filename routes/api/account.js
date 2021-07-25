@@ -59,8 +59,6 @@ router.post('/pendingmaintenance', [ auth,
             return res.status(400).json({ errors: errors.array() });
         }
 
-        console.log('post pendingmaintenance req.body:', req.body)
-
         const {
             maintenanceType,
             date,
@@ -97,7 +95,6 @@ router.post('/pendingmaintenance', [ auth,
 // @desc Get all pending maintenance
 // @access Private
 router.get('/pendingmaintenance', auth, async (req, res) => {
-    console.log('get pendingmaintenance ran')
     try {
         const id = req.user.id;
         const pendingMaintenance = await User.findOne({ _id: id }).sort({ date: -1 });
@@ -182,16 +179,11 @@ router.delete('/pendingmaintenance/:id', auth, async (req, res) => {
 // @desc Get all completed maintenance
 // @access Private
 router.get('/completedmaintenance', auth, async (req, res) => {
-    console.log('get completedmaintenance ran')
     try {
-        console.log('get completedmaintenance try block ran')
         const id = req.user.id;
-        console.log('get completedmaintenance id:', id)
         const completedMaintenance = await User.findOne({ _id: id }).sort({ date: -1 });
-        console.log('get completedmaintenance completedMaintenance:', completedMaintenance)
         res.json(completedMaintenance)
     } catch (err) {
-        console.log('get completedmaintenance error block ran')
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -210,7 +202,6 @@ router.post('/completedmaintenance', [ auth,
     // ] 
     ], 
     async (req, res) => {
-        console.log('completedmaintenance async ran')
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -242,8 +233,50 @@ router.post('/completedmaintenance', [ auth,
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-    
-    
+});
+
+// @route DELETE api/account/completedmaintenance/:id
+// @desc Delete a completed maintenance item
+// @access Private
+router.delete('/completedmaintenance/:id', auth, async (req, res) => {
+    try {
+
+        // getting the logged in user
+        const user = await User.findOne({ _id: req.user.id });
+        console.log('delete user:', user)
+        console.log('delete req.params.id:', req.params.id)
+
+        // Get remove index
+        const removeIndex = user.completedMaintenance.map(item => item._id).indexOf(req.params.id);
+        console.log('removeIndex:', removeIndex);
+
+        // // splicing out the index
+        user.completedMaintenance.splice(removeIndex, 1);
+        console.log('delete user after splice:', user)
+
+
+        await user.save();
+
+        res.json(user);
+        
+
+        // Check user
+        // if(pendingMaintenance.user.toString() !== req.user.id) {
+        //     return res.status(401).json({ msg: 'User not authorized' });
+        // }
+
+        // await pendingMaintenance.remove();
+
+        // res.json({ msg: 'Post removed' });
+    } catch (err) {
+        console.error(err.message);
+
+        // if(err.kind === 'ObjectId') {
+        //     return res.status(404).json({ msg: 'Pending Maintenance item not found' })
+        // }
+
+        res.status(500).send('Server Error');
+    }
 });
 
 

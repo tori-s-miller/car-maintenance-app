@@ -3,14 +3,23 @@ import { getCompletedMaintenance, deleteCompletedMaintenance } from '../../actio
 import Navbar from '../layout/Navbar';
 import { connect } from 'react-redux';
 
-const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceItems }) => {
+const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceItems, deleteCompletedMaintenance }) => {
 
     useEffect(() => {
         getCompletedMaintenance();
     }, [])
 
-    function deleteCompletedMaintenance() {
-        console.log('button was clicked')
+    function deleteCompletedMaintenanceClick(e) {
+        console.log('deleteCompletedMaintenanceClick e.currentTarget.parentNode:', e.currentTarget.parentNode)
+        console.log('deleteCompletedMaintenanceClick e.currentTarget.parentNode.parentNode:', e.currentTarget.parentNode.parentNode)
+        const deleteKey = e.currentTarget.parentNode.parentNode.getAttribute("data-index");
+        console.log('deleteCompletedMaintenanceClick deleteKey:', deleteKey)
+        console.log('completedMaintenanceItems:', completedMaintenanceItems)
+        completedMaintenanceItems.map((item, index) => {
+            if (index == deleteKey) {
+                deleteCompletedMaintenance(item._id);
+            }
+        });
     }
 
     return (
@@ -33,7 +42,7 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
                             <div className="completed-container">
                                 <p className="pending-maintenance-task">{item.maintenanceType}</p>
                                 <p className="maintenance-date">Completed on {date}</p>
-                                <button className="pending-item-delete-button" onClick={deleteCompletedMaintenance}>Delete</button>
+                                <button className="pending-item-delete-button" onClick={deleteCompletedMaintenanceClick}>Delete</button>
                             </div>
                         </div>
                     )
@@ -54,5 +63,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getCompletedMaintenance }
+    { getCompletedMaintenance, deleteCompletedMaintenance }
 )(CompletedMaintenance);
