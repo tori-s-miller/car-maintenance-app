@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addPendingMaintenance } from '../../actions/account';
 
@@ -28,9 +27,7 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
         <Fragment>
             <form className="maintenance-item-form" onSubmit={e => {
                 e.preventDefault();
-                // pass in user id to addPendingMaintenance
                 addPendingMaintenance(formData, history);
-                {console.log('AddPendingMaintenance submit formData:', formData)}
                 renderForm(e);
                 }}>
                 <label htmlFor="date" className="date-label">Date to be completed</label>

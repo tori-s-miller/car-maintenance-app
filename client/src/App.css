@@ -536,6 +536,14 @@ input {
   margin-left: 15px;
 }
 
+.completed-maintenance-date {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: .9em;
+  color: #7C87A1;
+  display: inline;
+}
+
 .maintenance-notes {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -570,6 +578,14 @@ input {
 
 .add-to-maintenance {
   margin: 10px;
+}
+
+.completed-maintenance-date-container {
+  margin-top: 10px;
+}
+
+.checkbox {
+  margin: 0 5px 0 15px;
 }
 
 

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { getCompletedMaintenance, deleteCompletedMaintenance } from '../../actions/account';
 import Navbar from '../layout/Navbar';
 import { connect } from 'react-redux';
+import checkbox from './img/checkbox.svg';
 
 const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceItems, deleteCompletedMaintenance }) => {
 
@@ -10,11 +11,7 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
     }, [])
 
     function deleteCompletedMaintenanceClick(e) {
-        console.log('deleteCompletedMaintenanceClick e.currentTarget.parentNode:', e.currentTarget.parentNode)
-        console.log('deleteCompletedMaintenanceClick e.currentTarget.parentNode.parentNode:', e.currentTarget.parentNode.parentNode)
         const deleteKey = e.currentTarget.parentNode.parentNode.getAttribute("data-index");
-        console.log('deleteCompletedMaintenanceClick deleteKey:', deleteKey)
-        console.log('completedMaintenanceItems:', completedMaintenanceItems)
         completedMaintenanceItems.map((item, index) => {
             if (index == deleteKey) {
                 deleteCompletedMaintenance(item._id);
@@ -24,7 +21,6 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
 
     return (
         <Fragment>
-            {console.log('CompletedMaintenance component rendered')}
             <Navbar />
             <h1 className="completed-maintenance-h1">Completed Maintenance Items</h1>
             <div className="container-completed-maintenance-items">
@@ -32,16 +28,16 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
                     let date = item.date.slice(0, 10);
                     return (
                         <div 
-                        /* className={!hidden && key === `${index}` ? "pending-maintenance-item-expanded" : "pending-maintenance-item"} */
-                        className="completed-maintenance-item"
-                        key={index}
-                        data-index={index}
-                        /* onClick={hidden ? renderForm : undefined} */
+                            className="completed-maintenance-item"
+                            key={index}
+                            data-index={index}
                         >
-                            {console.log('completedMaintenanceItems rendered')}
                             <div className="completed-container">
                                 <p className="pending-maintenance-task">{item.maintenanceType}</p>
-                                <p className="maintenance-date">Completed on {date}</p>
+                                <div className="completed-maintenance-date-container">
+                                    <img src={checkbox} className="checkbox" />
+                                    <p className="completed-maintenance-date">Completed on {date}</p>
+                                </div>
                                 <button className="pending-item-delete-button" onClick={deleteCompletedMaintenanceClick}>Delete</button>
                             </div>
                         </div>
@@ -53,7 +49,6 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
 }
 
 const mapStateToProps = state => {
-    console.log('CompletedMaintenance mapStateToProps state:', state)
     if(state.account.user != null) {
         return ({
             completedMaintenanceItems: state.account.user.completedMaintenance

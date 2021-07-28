@@ -1,9 +1,24 @@
 import React, { useState, Fragment } from 'react';
 import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
+import tire from './img/tire.svg';
+import coolant from './img/coolant.svg';
+import windshield from './img/windshield.svg';
+import engineoil from './img/engineoil.svg';
+import fluid from './img/fluid.svg';
+import battery from './img/battery.svg';
+import belt from './img/belt.svg';
+import lubrication from './img/lubrication.svg';
+import filter from './img/filter.svg';
+import exhaust from './img/exhaust.svg';
+import brakes from './img/brakes.svg';
+import fuelfilter from './img/fuel-filter.svg';
+import steering from './img/steering.svg';
+import polish from './img/polish.svg';
+import alignment from './img/alignment.svg';
+import brakefluid from './img/brake-fluid.svg';
 import AddPendingMaintenance from '../forms/AddPendingMaintenance';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
 
 
 function MaintenanceOptions(props) {
@@ -28,7 +43,7 @@ function MaintenanceOptions(props) {
 
     const sixMonths = [
         'Chassis lubrication',
-        'Thorough detail',
+        'Tire rotation',
         'Engine air filter',
         'Check exhaust system',
         'Replace wiper blades',
@@ -73,7 +88,12 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    <img src={light} className="icon" />
+                    {item === 'Check Lights' && <img src={light} className="icon" />}
+                    {item === 'Tire inflation and tread' && <img src={tire} className="icon" />}
+                    {item === 'Check windshield wiper fluid' && <img src={windshield} className="icon" />}
+                    {item === 'Check brake fluid' && <img src={fluid} className="icon" />}
+                    {item === 'Check coolant' && <img src={coolant} className="icon" />}
+                    {item === 'Engine oil' && <img src={engineoil} className="icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -98,7 +118,10 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    <img src={light} className="icon" />
+                    {item === 'Automatic transmission fluid' && <img src={fluid} className="icon" />}
+                    {item === 'Battery and cables' && <img src={battery} className="icon" />}
+                    {item === 'Check belts and hoses' && <img src={belt} className="icon" />}
+                    {item === 'Check power steering fluid' && <img src={fluid} className="icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -123,7 +146,12 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    <img src={light} className="icon" />
+                    {item === 'Chassis lubrication' && <img src={lubrication} className="icon" />}
+                    {item === 'Tire rotation' && <img src={tire} className="icon" />}
+                    {item === 'Engine air filter' && <img src={filter} className="icon" />}
+                    {item === 'Check exhaust system' && <img src={exhaust} className="icon" />}
+                    {item === 'Replace wiper blades' && <img src={windshield} className="icon" />}
+                    {item === 'Brakes inspection' && <img src={brakes} className="icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -147,7 +175,12 @@ function MaintenanceOptions(props) {
                 current-type="yearly" 
                 onClick={hidden ? renderForm : undefined}>
                 <div className="flex-container">
-                <img src={light} className="icon" />
+                    {item === 'Replace cabin air filter' && <img src={filter} className="icon" />}
+                    {item === 'Check fuel filter' && <img src={fuelfilter} className="icon" />}
+                    {item === 'Check steering and suspension' && <img src={steering} className="icon" />}
+                    {item === 'Flush brake fluid' && <img src={brakefluid} className="icon" />}
+                    {item === 'Check alignment' && <img src={alignment} className="icon" />}
+                    {item === 'Polish windshield and headlights' && <img src={polish} className="icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
