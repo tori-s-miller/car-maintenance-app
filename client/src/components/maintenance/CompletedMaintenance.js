@@ -24,6 +24,11 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
             <Navbar />
             <h1 className="completed-maintenance-h1">Completed Maintenance Items</h1>
             <div className="container-completed-maintenance-items">
+                {completedMaintenanceItems !== undefined && completedMaintenanceItems.length === 0 && (
+                    <p className="no-maintenance-items">
+                        No completed maintenance items added yet.
+                    </p>
+                )}
                 {completedMaintenanceItems !== undefined && completedMaintenanceItems.map((item, index) => {
                     let date = item.date.slice(0, 10);
                     return (

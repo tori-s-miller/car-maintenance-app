@@ -508,6 +508,23 @@ input {
   margin: 10px;
 }
 
+.no-maintenance-items {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #384669;
+  margin-left: 10px;
+  line-height: 1.5em;
+}
+
+.maintenance-options-link {
+  color: rgb(0, 140, 197);
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .pending-maintenance-item, .pending-maintenance-item-expanded, .completed-maintenance-item {
   background-color: #fff;
   margin: 10px;

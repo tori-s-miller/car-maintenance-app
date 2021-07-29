@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
 import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
 import { connect } from 'react-redux';
@@ -39,8 +40,25 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
         <Fragment>
             <Navbar />
             <h1 className="pending-maintenance-h1">Pending Maintenance Items</h1>
-            <p className="pending-maintenance-sort">Sort by:</p>
+            {/* {pendingMaintenanceItems !== undefined && pendingMaintenanceItems.length !== 0 &&<p className="pending-maintenance-sort">Sort by:</p>} */}
             <div className="container-pending-maintenance-items">
+            {pendingMaintenanceItems !== undefined && pendingMaintenanceItems.length === 0 && (
+                <p className="no-maintenance-items">
+                    No pending maintenance items added. Go to 
+                    &nbsp;
+                    <Link 
+                    className="maintenance-options-link"
+                    to="/account/pendingmaintenance"
+                    activeStyle={{
+                    color: "#008CC5"
+                    }}
+                    >
+                    Maintenance Options
+                    </Link> 
+                    &nbsp;
+                    to view a selection of pending maintenance items.
+                </p>
+            )}
             {pendingMaintenanceItems !== undefined && pendingMaintenanceItems.map((item, index) => {
                 let date = item.date.slice(0, 10);
                 return (
