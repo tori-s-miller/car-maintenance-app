@@ -3,28 +3,17 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
-// import { createAccount } from '../../actions/account';
 import PropTypes from 'prop-types';
 import car from '../img/car-illustration.svg';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
-    // the useState hook: formData is going to be the state, just like:
-    // state = { formData: {
-    //  } }
-    // setFormData is basically like this.setState and passing the form values in
     const [formData, setFormData] = useState({
-        // this is our initial state
         email: '',
         password: '',
         password2: '',
         pendingMaintenance: [],
         completedMaintenance: []
     });
-
-    // const accountData = {
-    //     pendingMaintenance: '',
-    //     completedMaintenance: ''  
-    // }
 
     const { email, password, password2, pendingMaintenance, completedMaintenance } = formData;
 
