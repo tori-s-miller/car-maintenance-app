@@ -53,15 +53,21 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 <h2>Create an Account</h2>
                 <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                <label for="email" className="email-label">Email</label>
-                <input type="email" name="email" value={email} 
-                    onChange={e => onChange(e)} />
+                    <label for="email" className="email-label">Email</label>
+                    <input 
+                    type="email" 
+                    name="email"
+                    className="form-input" 
+                    value={email} 
+                    onChange={e => onChange(e)} 
+                    />
                 </div>
                 <div className="form-group">
                     <label for="password" className="password-label">Password</label>
                     <input
                     type="password"
                     name="password"
+                    className="form-input" 
                     value={password} 
                     onChange={e => onChange(e)}
                     />
@@ -71,11 +77,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     <input
                     type="password"
                     name="password2"
+                    className="form-input"  
                     value={password2} 
                     onChange={e => onChange(e)}
                     />
                 </div>
                 <input type="submit" className="form-btn" value="Sign Up" />
+                <Link to="/login-demo" className="landing-btn btn-demo">Try Demo</Link>
                 </form>
                 <p className="have-acct-text">Already have an account? <Link to='/login' className="have-acct-text-link">Login</Link></p>
             </div>

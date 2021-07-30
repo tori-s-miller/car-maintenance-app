@@ -48,7 +48,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                     &nbsp;
                     <Link 
                     className="maintenance-options-link"
-                    to="/account/pendingmaintenance"
+                    to="/maintenanceoptions"
                     activeStyle={{
                     color: "#008CC5"
                     }}

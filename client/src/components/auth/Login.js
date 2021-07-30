@@ -40,8 +40,14 @@ const Login = ({ login, isAuthenticated }) => {
                 <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <label for="email" className="email-label">Email</label>
-                    <input type="email" placeholder="Email Address" name="email" value={email} 
-                        onChange={e => onChange(e)} required />
+                    <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    name="email"
+                    className="form-input" 
+                    value={email} 
+                    onChange={e => onChange(e)} required 
+                    />
                 </div>
                 <div className="form-group">
                     <label for="password" className="password-label">Password</label>
@@ -49,12 +55,14 @@ const Login = ({ login, isAuthenticated }) => {
                     type="password"
                     placeholder="Password"
                     name="password"
+                    className="form-input" 
                     minLength="6"
                     value={password} 
                     onChange={e => onChange(e)}
                     />
                 </div>
                 <input type="submit" className="form-btn" value="Log In" />
+                <Link to="/login-demo" className="landing-btn btn-demo">Try Demo</Link>
                 </form>
                 <p className="have-acct-text">Don't have an account? <Link to='/register' className="have-acct-text-link">Sign up.</Link></p>
             </div>

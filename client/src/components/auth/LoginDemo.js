@@ -29,7 +29,7 @@ const LoginDemo = ({ login, isAuthenticated }) => {
     // Redirect if logged in
     if(isAuthenticated) {
         console.log('LoginDemo isAuthenticated')
-        return <Redirect to="/maintenance-options" />
+        return <Redirect to="/maintenanceoptions" />
     }
 
     return (

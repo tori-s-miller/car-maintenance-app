@@ -103,6 +103,7 @@ body {
   border: none;
   font-size: 1em;
   margin-top: 20px;
+  margin-right: 20px;
 }
 
 .btn-signup {
@@ -200,6 +201,10 @@ input {
   border: 1px solid #667EB9;
 }
 
+/* .form-input {
+  border: 1px solid #667EB9;
+} */
+
 @media(max-width: 1000px) {
   .col-1 > h1 {
     font-size: 2.75em;
@@ -215,9 +220,9 @@ input {
     padding-left: 10%;
   }
 
-  .landing-btn {
+  /* .landing-btn {
     padding: 8px 27px;
-  }
+  } */
 
   @media(max-width: 768px) {
     .landing {
