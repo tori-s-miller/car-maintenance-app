@@ -1,9 +1,19 @@
 import React, { Fragment } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import '../../App.css';
+import maintenanceIcon from './img/maintenance-options.svg'
+import maintenanceIconActive from './img/maintenance-options-active.svg'
+import pending from './img/pending.svg';
+import pendingActive from './img/pending-active.svg';
+import completed from './img/completed.svg';
+import completedActive from './img/completed-active.svg';
+import logoutIcon from './img/logout.svg';
+
+
 
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -29,19 +39,30 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   //   </ul>
   // );
 
+  const useTextNav = useMediaQuery({ query: '(min-width: 769px)' });
+  const useIconNav = useMediaQuery({ query: '(max-width: 768px)' });
+
+  // const location = useLocation();
+  const location = useLocation().pathname;
+  console.log('location:', location)
 
     return (
     <nav className="navbar">
       <ul>
         <li className="nav-link-1">
-          {/* <Link to="/maintenance-options">Maintenance Options</Link> */}
           <NavLink 
             to="/maintenanceoptions"
             activeStyle={{
               color: "#008CC5"
             }}
           >
-            Maintenance Options
+          {useTextNav && <div className="nav-link">Maintenance Options</div>}
+          {useIconNav && location === '/maintenanceoptions' && <img 
+            src={maintenanceIconActive} 
+            className="" />}
+          {useIconNav && location !== '/maintenanceoptions' && <img 
+          src={maintenanceIcon} 
+          className="" />}
           </NavLink>
         </li>
         <li className="nav-link-2">
@@ -51,7 +72,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               color: "#008CC5"
             }}
             >
-              Pending Maintenance
+            {useTextNav && <div className="nav-link">Pending Maintenance</div>}
+            {useIconNav && location === '/account/pendingmaintenance' && <img 
+            src={pendingActive} 
+            className="" />}
+            {useIconNav && location !== '/account/pendingmaintenance' && <img 
+            src={pending} 
+            className="" />}
           </NavLink>
         </li>
         <li className="nav-link-3">
@@ -61,13 +88,23 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               color: "#008CC5"
             }}
             >
-              Completed Maintenance
+            {useTextNav && <div className="nav-link">Completed Maintenance</div>}
+            {useIconNav && location === '/account/completedmaintenance' && <img 
+            src={completedActive} 
+            className="" />}
+            {useIconNav && location !== '/account/completedmaintenance' && <img 
+            src={completed} 
+            className="" />}
           </NavLink>
         </li>
         <li>
-          <a onClick={logout} href="#!">
-            <i className="fas fa-sign-out-alt" alt=""></i>{' '}
-            <span className="hide-sm">Logout</span></a>
+          {useTextNav && <a onClick={logout} href="#!" className="logout">
+            {/* <i className="fas fa-sign-out-alt" alt=""></i>{' '} */}
+            <span className="hide-sm">Logout</span>
+          </a>}
+          {useIconNav && <img 
+            src={logoutIcon} 
+            className="logout" />}
         </li>
       </ul>
       {/* { !loading && (<Fragment>{ isAuthenticated ? authLinks: guestLinks }</Fragment>) } */}

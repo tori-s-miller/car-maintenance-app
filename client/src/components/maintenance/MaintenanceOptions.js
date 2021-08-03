@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import Navbar from '../layout/Navbar';
 import light from './img/car-light.svg';
 import tire from './img/tire.svg';
