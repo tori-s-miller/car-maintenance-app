@@ -300,14 +300,28 @@ input {
   grid-template-columns: repeat(4, 1fr);
   margin: 0 8%;
   border: 1px solid red;
+  justify-items: start;
 }
 
-.maintenance-options > h2 {
+.maintenance-options-h2 {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 1.3em;
   color: #384669;
   grid-row: 2;
+}
+
+.h2-med {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  color: #384669;
+  grid-row: 2;
+}
+
+.h2-active {
+  color: #008CC5;
+  border-bottom: 4px solid #008CC5;
 }
 
 .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
@@ -471,13 +485,15 @@ input {
   margin-left: 5px;
 }
 
-
-@media(max-width: 1000px) {
-  
-}
-
 @media(max-width: 768px) {
+  .maintenance-options {
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
 
+  .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 }
 
 @media(max-width: 500px) {

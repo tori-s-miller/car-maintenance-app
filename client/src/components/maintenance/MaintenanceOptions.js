@@ -64,6 +64,11 @@ function MaintenanceOptions(props) {
     const [key, setKey] = useState(null);
     const [itemType, setItemType] = useState(null);
 
+    const mediumView = useMediaQuery({ query: '(max-width: 768px)' });
+
+    const [currentOption, setCurrentOption] = useState('monthly')
+
+
     function renderForm(e) {
         e.preventDefault();
         const key = e.currentTarget.getAttribute("data-index");
@@ -201,29 +206,62 @@ function MaintenanceOptions(props) {
     return (
         <Fragment>
             <Navbar />
-            <section className="maintenance-options">
-                <h2>Monthly</h2>
-                <div className="wrapper-1">
-                    {monthlyTasks}
-                </div>
-                
-                <h2>Every 3 months/<br/>3,000 miles</h2>
-                <div className="wrapper-2">
-                    {threeMonthTasks}
-                    <div></div>
-                    <div></div>
-                </div>
+            {!mediumView && (
+                <section className="maintenance-options">
+                    <h2 className="maintenance-options-h2">Monthly</h2>
+                    <div className="wrapper-1">
+                        {monthlyTasks}
+                    </div>
+                    
+                    <h2 className="maintenance-options-h2">Every 3 months/<br/>3,000 miles</h2>
+                    <div className="wrapper-2">
+                        {threeMonthTasks}
+                        <div></div>
+                        <div></div>
+                    </div>
 
-                <h2>Every 6 months/<br/>6,000 miles</h2>
-                <div className="wrapper-3">
-                    {sixMonthTasks}
-                </div>
+                    <h2 className="maintenance-options-h2">Every 6 months/<br/>6,000 miles</h2>
+                    <div className="wrapper-3">
+                        {sixMonthTasks}
+                    </div>
 
-                <h2>Every 12 months/<br/>12,000 miles</h2>
-                <div className="wrapper-4">
-                    {yearlyTasks}
-                </div>
-            </section>  
+                    <h2 className="maintenance-options-h2">Every 12 months/<br/>12,000 miles</h2>
+                    <div className="wrapper-4">
+                        {yearlyTasks}
+                    </div>
+                </section>
+            )}
+            {mediumView && (
+                <section className="maintenance-options">
+                    <h2 className={currentOption === 'monthly' ? "h2-med h2-active" : "h2-med" } onClick={() => setCurrentOption('monthly')}>Monthly</h2>
+                    {currentOption === 'monthly' && (
+                        <div className="wrapper-1">
+                            {monthlyTasks}
+                        </div>
+                    )}
+                    
+                    <h2 className={currentOption === 'threeMonths' ? "h2-med h2-active" : "h2-med" } onClick={() => setCurrentOption('threeMonths')}>Every 3 months/<br/>3,000 miles</h2>
+                    {currentOption === 'threeMonths' && (
+                        <div className="wrapper-2">
+                            {threeMonthTasks}
+                        </div>
+                    )}
+
+                    <h2 className={currentOption === 'sixMonths' ? "h2-med h2-active" : "h2-med" } onClick={() => setCurrentOption('sixMonths')}>Every 6 months/<br/>6,000 miles</h2>
+                    {currentOption === 'sixMonths' && (
+                        <div className="wrapper-3">
+                            {sixMonthTasks}
+                        </div>
+                    )}
+
+                    <h2 className={currentOption === 'yearly' ? "h2-med h2-active" : "h2-med" } onClick={() => setCurrentOption('yearly')}>Every 12 months/<br/>12,000 miles</h2>
+                    {currentOption === 'yearly' && (
+                        <div className="wrapper-4">
+                            {yearlyTasks}
+                        </div>
+                    )}
+                </section>  
+            )}
         </Fragment>
     )
 }
