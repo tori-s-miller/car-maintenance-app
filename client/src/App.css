@@ -239,7 +239,7 @@ input {
 
 @media(max-width: 768px) {
   .navbar > ul {
-    grid-template-columns: 10% 15% 15% 15% 35% 10%;
+    grid-template-columns: 5% 15% 15% 15% 45% 5%;
   }
 }
 
@@ -298,8 +298,7 @@ input {
 .maintenance-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 0 8%;
-  border: 1px solid red;
+  margin: 0 10%;
   justify-items: start;
 }
 
@@ -314,7 +313,7 @@ input {
 .h2-med {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 1em;
+  font-size: .9em;
   color: #384669;
   grid-row: 2;
 }
@@ -326,6 +325,7 @@ input {
 
 .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
   grid-row: 3;
+  width: 100%;
 }
 
 .wrapper-1 {
@@ -354,7 +354,6 @@ input {
   align-items: center;
   -webkit-box-shadow: 0px 2px 14px 2px rgba(110, 20, 20, 0.09); 
   box-shadow: 0px 2px 14px 2px rgba(0,0,0,0.09);
-  border: 1px solid green;
 }
 
 .maintenance-item-expanded {
@@ -369,7 +368,6 @@ input {
 
 .flex-container {
   display: flex;
-  border: 1px solid orange;
 }
 
 .icon {
@@ -386,31 +384,11 @@ input {
 .maintenance-task {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: .9em;
+  font-size: .8em;
   color: #008CC5;
   padding: 5px 5px 0 0;
   margin: 0;
 }
-
-@media(max-width: 1000px) {
-  .maintenance-options {
-    margin: 0 5%;
-  }
-
-  .maintenance-options > h2 {
-    font-size: 1em;
-  }
-
-  .icon {
-    padding: 5px;
-    width: 30px;
-  }
-
-  .maintenance-task {
-    font-size: .8em;
-  }
-}
-
 
 .schedule-task {
   font-family: 'Roboto', sans-serif;
@@ -464,13 +442,13 @@ input {
 .submit-button {
   font-family: 'Roboto', sans-serif;
   font-size: .7em;
-  width: 80px;
+  /* width: 80px; */
   color: #008CC5;
   background-color: #CAF3FB;
   border-radius: 5px;
   padding: 5px 10px;
   border: none;
-  margin-right: 5px;
+  margin-right: 5%;
 }
 
 .cancel-button {
@@ -482,22 +460,73 @@ input {
   border-radius: 5px;
   padding: 5px 10px;
   border: none;
-  margin-left: 5px;
+}
+
+@media(max-width: 1120px) {
+  .submit-button, .cancel-button {
+    font-size: .6em;
+  }
+
+  .submit-button {
+    padding: 5px 8px;
+  }
+
+  .cancel-button {
+    width: 70px;
+    padding: 5px 8px;
+  }
+}
+
+@media(max-width: 1000px) {
+  .maintenance-options {
+    margin: 0 5%;
+  }
+
+  .maintenance-options-h2 {
+    font-size: 1em;
+  }
+
+  .icon {
+    padding: 5px;
+    width: 30px;
+  }
+
+  .maintenance-task {
+    /* font-size: .8em; */
+  }
+}
+
+@media(max-width: 880px) {
+  .submit-button, .cancel-button {
+    font-size: .7em;
+    padding: 5px 10px;
+    width: 100%;
+  }
+
+  .cancel-button {
+    margin-top: 5px;
+  }
 }
 
 @media(max-width: 768px) {
-  .maintenance-options {
-    /* grid-template-columns: repeat(2, 1fr); */
-  }
+  /* .maintenance-options {
+    margin: 0 5%;
+  } */
 
   .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
     grid-column-start: 1;
     grid-column-end: 4;
   }
+
+  .maintenance-task {
+    font-size: 1em;
+  }
 }
 
-@media(max-width: 500px) {
-
+@media(max-width: 550px) {
+  .h2-med {
+    font-size: .8em;
+  }
 }
 
 
