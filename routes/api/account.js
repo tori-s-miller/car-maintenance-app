@@ -10,11 +10,14 @@ const User = require('../../models/User');
 // @access Private
 
 router.post('/pendingmaintenance', [ auth, 
-    // [
-    //     check('maintenanceType', 'maintenanceType is required')
-    //         .not()
-    //         .isEmpty()
-    // ] 
+    [
+        check('maintenanceType', 'maintenanceType is required')
+            .not()
+            .isEmpty(),
+        check('date', 'Date is required')
+            .not()
+            .isEmpty()
+    ] 
     ], 
     async (req, res) => {
         const errors = validationResult(req);

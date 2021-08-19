@@ -45,6 +45,7 @@ export const addPendingMaintenance = (formData, id) => async dispatch => {
 
         // history.push('/dashboard');
     } catch (err) {
+        console.log('addPendingMaintenance err:', err)
         const errors = err.response.data.errors;
 
         if(errors) {
