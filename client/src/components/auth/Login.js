@@ -32,22 +32,24 @@ const Login = ({ login, isAuthenticated }) => {
                 <h2>Log Into Your Account</h2>
                 <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                    <label for="email" className="email-label">Email</label>
+                    <label htmlFor="email" className="email-label">Email</label>
                     <input 
                     type="email" 
                     placeholder="Email Address" 
                     name="email"
+                    autoComplete="username"
                     className="form-input" 
                     value={email} 
                     onChange={e => onChange(e)} required 
                     />
                 </div>
                 <div className="form-group">
-                    <label for="password" className="password-label">Password</label>
+                    <label htmlFor="password" className="password-label">Password</label>
                     <input
                     type="password"
                     placeholder="Password"
                     name="password"
+                    autoComplete="current-password"
                     className="form-input" 
                     minLength="6"
                     value={password} 
@@ -60,7 +62,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <p className="have-acct-text">Don't have an account? <Link to='/register' className="have-acct-text-link">Sign up.</Link></p>
             </div>
             <div className="col-2">
-                <img src={car} className="car" />
+                <img src={car} className="car" alt="car" />
             </div>
         </section>
         </Fragment>

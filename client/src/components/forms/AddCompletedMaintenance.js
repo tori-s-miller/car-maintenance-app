@@ -10,18 +10,13 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
     const yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
 
-    const [formData, setFormData] = useState({
+    const [formData] = useState({
         maintenanceType: item.maintenanceType,
         date: today,
         notes: item.notes
     });
 
     const id = item._id
-
-    const [state, setState] = React.useState("");
-    React.useEffect(() => {
-        handleChild(state);
-    }, [state]);
 
     return (
         <Fragment>

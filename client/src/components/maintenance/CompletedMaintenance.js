@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { getCompletedMaintenance, deleteCompletedMaintenance } from '../../actions/account';
 import Navbar from '../layout/Navbar';
 import { connect } from 'react-redux';
@@ -8,12 +8,12 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
 
     useEffect(() => {
         getCompletedMaintenance();
-    }, [])
+    })
 
     function deleteCompletedMaintenanceClick(e) {
-        const deleteKey = e.currentTarget.parentNode.parentNode.getAttribute("data-index");
-        completedMaintenanceItems.map((item, index) => {
-            if (index == deleteKey) {
+        const deleteKey = Number(e.currentTarget.parentNode.parentNode.getAttribute("data-index"));
+        completedMaintenanceItems.forEach((item, index) => {
+            if (index === deleteKey) {
                 deleteCompletedMaintenance(item._id);
             }
         });
@@ -40,7 +40,7 @@ const CompletedMaintenance = ({ getCompletedMaintenance, completedMaintenanceIte
                             <div className="completed-container">
                                 <p className="pending-maintenance-task">{item.maintenanceType}</p>
                                 <div className="completed-maintenance-date-container">
-                                    <img src={checkbox} className="checkbox" />
+                                    <img src={checkbox} className="checkbox" alt="checkbox" />
                                     <p className="completed-maintenance-date">Completed on {date}</p>
                                 </div>
                                 <button className="pending-item-delete-button" onClick={deleteCompletedMaintenanceClick}>Delete</button>
@@ -58,6 +58,8 @@ const mapStateToProps = state => {
         return ({
             completedMaintenanceItems: state.account.user.completedMaintenance
         });
+    } else {
+        return ({});
     }
 }
 

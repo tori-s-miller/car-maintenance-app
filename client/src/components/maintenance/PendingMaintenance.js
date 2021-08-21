@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
-import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenance, deletePendingMaintenanceForCompleted } from '../../actions/account';
+import { getPendingMaintenance, addCompletedMaintenance, deletePendingMaintenance } from '../../actions/account';
 import { connect } from 'react-redux';
 import AddCompletedMaintenance from '../forms/AddCompletedMaintenance';
 
@@ -9,16 +9,16 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     useEffect(() => {
         getPendingMaintenance();
-    }, [])
+    })
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
 
-    const [child, setChild] = React.useState(false);
-    const handleChildState = React.useCallback(childState => {
-        setChild(childState);
-        console.log('childState:', childState)
-    }, []);
+    // const [child, setChild] = React.useState(false);
+    // const handleChildState = React.useCallback(childState => {
+    //     setChild(childState);
+    //     console.log('childState:', childState)
+    // }, []);
 
     function renderForm(e) {
         e.preventDefault();
@@ -28,9 +28,9 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
     }
 
     function deletePendingMaintenanceClick(e) {
-        const deleteKey = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
-        pendingMaintenanceItems.map((item, index) => {
-            if (index == deleteKey) {
+        const deleteKey = Number(e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index"));
+        pendingMaintenanceItems.forEach((item, index) => {
+            if (index === deleteKey) {
                 deletePendingMaintenance(item._id);
             }
         });
@@ -77,7 +77,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                             </div>
                             {!hidden && key === `${index}` && (
                                 <div className="add-to-maintenance">
-                                    <AddCompletedMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} setKey={setKey} />
+                                    <AddCompletedMaintenance hidden={hidden} renderForm={renderForm} item={item} setKey={setKey} />
                                 </div>
                             )}
                         </div>
@@ -94,6 +94,8 @@ const mapStateToProps = state => {
         return ({
             pendingMaintenanceItems: state.account.user.pendingMaintenance
         });
+    } else {
+        return ({});
     }
 }
 

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import React from 'react'
+import { NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
@@ -44,7 +44,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   // const location = useLocation();
   const location = useLocation().pathname;
-  console.log('location:', location)
 
     return (
     <nav className="navbar">
@@ -59,10 +58,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           {useTextNav && <div className="nav-link">Maintenance Options</div>}
           {useIconNav && location === '/maintenanceoptions' && <img 
             src={maintenanceIconActive} 
-            className="" />}
+            className=""
+            alt="active-icon" />}
           {useIconNav && location !== '/maintenanceoptions' && <img 
           src={maintenanceIcon} 
-          className="" />}
+          className=""
+          alt="inactive-icon" />}
           </NavLink>
         </li>
         <li className="nav-link-2">
@@ -75,10 +76,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             {useTextNav && <div className="nav-link">Pending Maintenance</div>}
             {useIconNav && location === '/account/pendingmaintenance' && <img 
             src={pendingActive} 
-            className="" />}
+            alt="active-icon" />}
             {useIconNav && location !== '/account/pendingmaintenance' && <img 
             src={pending} 
-            className="" />}
+            alt="inactive-icon" />}
           </NavLink>
         </li>
         <li className="nav-link-3">
@@ -91,10 +92,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             {useTextNav && <div className="nav-link">Completed Maintenance</div>}
             {useIconNav && location === '/account/completedmaintenance' && <img 
             src={completedActive} 
-            className="" />}
+            alt="active-icon" />}
             {useIconNav && location !== '/account/completedmaintenance' && <img 
             src={completed} 
-            className="" />}
+            alt="inactive-icon" />}
           </NavLink>
         </li>
         <li>
@@ -104,7 +105,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </a>}
           {useIconNav && <img 
             src={logoutIcon} 
-            className="logout" />}
+            className="logout"
+            alt="logout-icon" />}
         </li>
       </ul>
       {/* { !loading && (<Fragment>{ isAuthenticated ? authLinks: guestLinks }</Fragment>) } */}

@@ -11,16 +11,18 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
         itemID: Math.random()
     });
 
-    const { maintenanceType, date, notes } = formData;
+    const { date, notes } = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const [state, setState] = React.useState("");
-    React.useEffect(() => {
-        handleChild(state);
-    }, [state]);
+    // const [state, setState] = React.useState("");
+    // console.log('AddPendingMaintenance state:', state)
+    // React.useEffect(() => {
+    //     console.log('AddPendingMaintenance useEffect state:', state)
+    //     handleChild(state);
+    // }, [state]);
 
 
     return (

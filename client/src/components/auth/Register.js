@@ -46,6 +46,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     <input 
                     type="email" 
                     name="email"
+                    autoComplete="username"
                     className="form-input" 
                     value={email} 
                     onChange={e => onChange(e)} 
@@ -56,6 +57,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     <input
                     type="password"
                     name="password"
+                    autoComplete="new-password"
                     className="form-input" 
                     value={password} 
                     onChange={e => onChange(e)}
@@ -77,7 +79,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 <p className="have-acct-text">Already have an account? <Link to='/login' className="have-acct-text-link">Login</Link></p>
             </div>
             <div className="col-2">
-                <img src={car} className="car" />
+                <img src={car} className="car" alt="car" />
             </div>
         </section>
         </Fragment>

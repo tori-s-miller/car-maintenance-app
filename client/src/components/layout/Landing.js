@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import car from '../img/car-illustration.svg';
 
 const Landing = ({ isAuthenticated }) => {
-  console.log('isAuthenticated:', isAuthenticated)
   if(isAuthenticated) {
     return <Redirect to='/maintenanceoptions' />
   }
@@ -20,7 +19,7 @@ const Landing = ({ isAuthenticated }) => {
           <p className="have-acct-text">Already have an account? <Link to="/login" className="have-acct-text-link">Login.</Link></p>
       </div>
       <div className="col-2">
-        <img src={car} className="car" />
+        <img src={car} className="car" alt="car" />
       </div>
     </section>
     )

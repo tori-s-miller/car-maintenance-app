@@ -53,7 +53,7 @@ const LoginDemo = ({ login, isAuthenticated }) => {
                 <p className="have-acct-text">Want to create your own account? <Link to='/register' className="have-acct-text-link">Sign up.</Link></p>
             </div>
             <div className="col-2">
-                <img src={car} className="car" />
+                <img src={car} className="car" alt="car" />
             </div>
         </section>
         </Fragment>

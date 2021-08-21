@@ -78,10 +78,10 @@ function MaintenanceOptions(props) {
         setHidden(!hidden);
     }
 
-    const [child, setChild] = React.useState(false);
-    const handleChildState = React.useCallback(childState => {
-      setChild(childState);
-    }, []);
+    // const [child, setChild] = React.useState(false);
+    // const handleChildState = React.useCallback(childState => {
+    //   setChild(childState);
+    // }, []);
 
 
     const monthlyTasks = monthlyItems.map((item, index) => {
@@ -94,12 +94,12 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    {item === 'Check Lights' && <img src={light} className="icon" />}
-                    {item === 'Tire inflation and tread' && <img src={tire} className="icon" />}
-                    {item === 'Check windshield wiper fluid' && <img src={windshield} className="icon" />}
-                    {item === 'Check brake fluid' && <img src={fluid} className="icon" />}
-                    {item === 'Check coolant' && <img src={coolant} className="icon" />}
-                    {item === 'Engine oil' && <img src={engineoil} className="icon" />}
+                    {item === 'Check Lights' && <img src={light} className="icon" alt="headlight-icon" />}
+                    {item === 'Tire inflation and tread' && <img src={tire} className="icon" alt="tire-icon" />}
+                    {item === 'Check windshield wiper fluid' && <img src={windshield} className="icon" alt="windshield-icon" />}
+                    {item === 'Check brake fluid' && <img src={fluid} className="icon" alt="brake-fluid-icon" />}
+                    {item === 'Check coolant' && <img src={coolant} className="icon" alt="coolant-icon" />}
+                    {item === 'Engine oil' && <img src={engineoil} className="icon" alt="engine-oil-icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -107,7 +107,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
+                        <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -124,10 +124,10 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    {item === 'Automatic transmission fluid' && <img src={fluid} className="icon" />}
-                    {item === 'Battery and cables' && <img src={battery} className="icon" />}
-                    {item === 'Check belts and hoses' && <img src={belt} className="icon" />}
-                    {item === 'Check power steering fluid' && <img src={fluid} className="icon" />}
+                    {item === 'Automatic transmission fluid' && <img src={fluid} className="icon" alt="fluid-icon" />}
+                    {item === 'Battery and cables' && <img src={battery} className="icon" alt="battery-icon" />}
+                    {item === 'Check belts and hoses' && <img src={belt} className="icon" alt="engine-belt-icon" />}
+                    {item === 'Check power steering fluid' && <img src={fluid} className="icon" alt="fluid-icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -135,7 +135,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "threeMonths" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
+                        <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -152,12 +152,12 @@ function MaintenanceOptions(props) {
                 onClick={hidden ? renderForm : undefined}
             >
                 <div className="flex-container">
-                    {item === 'Chassis lubrication' && <img src={lubrication} className="icon" />}
-                    {item === 'Tire rotation' && <img src={tire} className="icon" />}
-                    {item === 'Engine air filter' && <img src={filter} className="icon" />}
-                    {item === 'Check exhaust system' && <img src={exhaust} className="icon" />}
-                    {item === 'Replace wiper blades' && <img src={windshield} className="icon" />}
-                    {item === 'Brakes inspection' && <img src={brakes} className="icon" />}
+                    {item === 'Chassis lubrication' && <img src={lubrication} className="icon" alt="chassis-lubrication-icon" />}
+                    {item === 'Tire rotation' && <img src={tire} className="icon" alt="car-tire-icon" />}
+                    {item === 'Engine air filter' && <img src={filter} className="icon" alt="engine-air-filter-icon" />}
+                    {item === 'Check exhaust system' && <img src={exhaust} className="icon" alt="exhaust-icon" />}
+                    {item === 'Replace wiper blades' && <img src={windshield} className="icon" alt="windshield-icon" />}
+                    {item === 'Brakes inspection' && <img src={brakes} className="icon" alt="brakes-icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -165,7 +165,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "sixMonths" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
+                        <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -181,12 +181,12 @@ function MaintenanceOptions(props) {
                 current-type="yearly" 
                 onClick={hidden ? renderForm : undefined}>
                 <div className="flex-container">
-                    {item === 'Replace cabin air filter' && <img src={filter} className="icon" />}
-                    {item === 'Check fuel filter' && <img src={fuelfilter} className="icon" />}
-                    {item === 'Check steering and suspension' && <img src={steering} className="icon" />}
-                    {item === 'Flush brake fluid' && <img src={brakefluid} className="icon" />}
-                    {item === 'Check alignment' && <img src={alignment} className="icon" />}
-                    {item === 'Polish windshield and headlights' && <img src={polish} className="icon" />}
+                    {item === 'Replace cabin air filter' && <img src={filter} className="icon" alt="cabin-air-filter-icon" />}
+                    {item === 'Check fuel filter' && <img src={fuelfilter} className="icon" alt="fuel-filter-icon" />}
+                    {item === 'Check steering and suspension' && <img src={steering} className="icon" alt="steering-suspension-icon" />}
+                    {item === 'Flush brake fluid' && <img src={brakefluid} className="icon" alt="brake-fluid-icon" />}
+                    {item === 'Check alignment' && <img src={alignment} className="icon" alt="car-alignment-icon" />}
+                    {item === 'Polish windshield and headlights' && <img src={polish} className="icon" alt="headlight-icon" />}
                     <div className="flex-sub-container">
                         <p className="maintenance-task">{item}</p>
                         <p className="schedule-task">Schedule this task</p>
@@ -194,7 +194,7 @@ function MaintenanceOptions(props) {
                 </div>
                 {!hidden && key === `${index}` && itemType === "yearly" && (
                     <Fragment>
-                        <AddPendingMaintenance handleChild={handleChildState} hidden={hidden} renderForm={renderForm} item={item} id={id} />
+                        <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
                     </Fragment>
                 )}
             </div>
@@ -270,7 +270,9 @@ const mapStateToProps = state => {
     if(state.auth.user != null) {
         return ({
             id: state.auth.user._id
-        })
+        });
+    } else {
+        return ({});
     }
 }
 
