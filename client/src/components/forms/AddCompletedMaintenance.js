@@ -27,8 +27,8 @@ const AddCompletedMaintenance = ({ addCompletedMaintenance, history, handleChild
                 renderForm(e);
                 setKey(null);
                 }}>
-                <label htmlFor="date" className="date-label">Add to Completed Maintenance?</label>
-                <input type="submit" value="Yes" className="submit-button" />
+                <label htmlFor="add-to-completed" className="add-completed-label">Add to Completed Maintenance?</label>
+                <input type="submit" value="Yes" className="submit-completed-button" />
                 <input type="button" value="Cancel" className="cancel-button" onClick={e => renderForm(e)} />
             </form>
         </Fragment>

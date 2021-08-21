@@ -407,13 +407,19 @@ input {
 .maintenance-item-form {
   grid-column-start: 1;
   grid-column-end: 3;
-  padding: 0 10px 10px 10px;
+  /* padding: 0 10px 10px 10px; */
+  padding-bottom: 10px;
   grid-row-start: 3;
   grid-row-end: 6;
 }
 
 .date-label {
   font-size: .8em;
+}
+
+.add-completed-label {
+  font-size: .8em;
+  margin-bottom: 10px;
 }
 
 .date-input {
@@ -439,16 +445,19 @@ input {
   flex-direction: row;
 }
 
-.submit-button {
+.submit-button, .submit-completed-button {
   font-family: 'Roboto', sans-serif;
   font-size: .7em;
-  /* width: 80px; */
   color: #008CC5;
   background-color: #CAF3FB;
   border-radius: 5px;
   padding: 5px 10px;
   border: none;
   margin-right: 5%;
+}
+
+.submit-completed-button {
+  width: 80px;
 }
 
 .cancel-button {
@@ -585,6 +594,10 @@ input {
   box-shadow: 0px 2px 14px 2px rgba(0,0,0,0.09);
 }
 
+/* .pending-maintenance-item-expanded {
+  margin-bottom: 0;
+} */
+
 .pending-maintenance-task {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -626,6 +639,7 @@ input {
   padding: 5px 10px;
   border: none;
   margin: 10px;
+  margin-left: 15px;
   width: 80px;
 }
 
@@ -642,7 +656,7 @@ input {
 }
 
 .add-to-maintenance {
-  margin: 10px;
+  margin: 0 10px 0 15px;
 }
 
 .completed-maintenance-date-container {
