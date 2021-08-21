@@ -106,9 +106,9 @@ function MaintenanceOptions(props) {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "monthly" && (
-                    <Fragment>
+                    <div className="add-to-maintenance">
                         <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
-                    </Fragment>
+                    </div>
                 )}
             </div>
         );
