@@ -134,9 +134,9 @@ function MaintenanceOptions(props) {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "threeMonths" && (
-                    <Fragment>
+                    <div className="add-to-maintenance">
                         <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
-                    </Fragment>
+                    </div>
                 )}
             </div>
         );
@@ -164,9 +164,9 @@ function MaintenanceOptions(props) {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "sixMonths" && (
-                    <Fragment>
+                    <div className="add-to-maintenance">
                         <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
-                    </Fragment>
+                    </div>
                 )}
             </div>
         );
@@ -193,9 +193,9 @@ function MaintenanceOptions(props) {
                     </div>
                 </div>
                 {!hidden && key === `${index}` && itemType === "yearly" && (
-                    <Fragment>
+                    <div className="add-to-maintenance">
                         <AddPendingMaintenance hidden={hidden} renderForm={renderForm} item={item} id={id} />
-                    </Fragment>
+                    </div>
                 )}
             </div>
         );
