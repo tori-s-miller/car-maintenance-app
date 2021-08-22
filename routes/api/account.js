@@ -156,15 +156,8 @@ router.post('/completedmaintenance', [ auth,
 router.delete('/completedmaintenance/:id', auth, async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.user.id });
-
-        // Get remove index
         const removeIndex = user.completedMaintenance.map(item => item._id).indexOf(req.params.id);
-        console.log('removeIndex:', removeIndex);
-
-        // // splicing out the index
         user.completedMaintenance.splice(removeIndex, 1);
-        console.log('delete user after splice:', user)
-
 
         await user.save();
 

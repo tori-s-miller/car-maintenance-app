@@ -17,14 +17,6 @@ const AddPendingMaintenance = ({ addPendingMaintenance, history, handleChild, re
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    // const [state, setState] = React.useState("");
-    // console.log('AddPendingMaintenance state:', state)
-    // React.useEffect(() => {
-    //     console.log('AddPendingMaintenance useEffect state:', state)
-    //     handleChild(state);
-    // }, [state]);
-
-
     return (
         <Fragment>
             <form className="maintenance-item-form" onSubmit={e => {

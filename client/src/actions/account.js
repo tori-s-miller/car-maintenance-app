@@ -42,8 +42,6 @@ export const addPendingMaintenance = (formData, id) => async dispatch => {
         });
 
         dispatch(setAlert('Pending Maintenance Added', 'success'));
-
-        // history.push('/dashboard');
     } catch (err) {
         const errors = err.response.data.errors;
 
@@ -69,7 +67,6 @@ export const deletePendingMaintenance = id => async dispatch => {
                 payload: res.data
             })
     
-            // dispatch(setAlert('Goal Removed', 'success'));
         } catch (err) {
             dispatch({
                 type: ACCOUNT_ERROR,
@@ -134,7 +131,6 @@ export const addCompletedMaintenance = (formData, history) => async dispatch => 
 
         dispatch(setAlert('Completed Maintenance Added', 'success'));
 
-        // history.push('/dashboard');
     } catch (err) {
         const errors = err.response.data.errors;
 

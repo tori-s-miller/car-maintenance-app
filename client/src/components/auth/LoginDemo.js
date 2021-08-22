@@ -21,7 +21,6 @@ const LoginDemo = ({ login, isAuthenticated }) => {
     };
 
     if(isAuthenticated) {
-        console.log('LoginDemo isAuthenticated')
         return <Redirect to="/maintenanceoptions" />
     }
 
@@ -38,7 +37,7 @@ const LoginDemo = ({ login, isAuthenticated }) => {
                         onChange={e => onChange(e)} required />
                 </div>
                 <div className="form-group">
-                    <label for="password" className="password-label">Password</label>
+                    <label htmlFor="password" className="password-label">Password</label>
                     <input
                     type="password"
                     placeholder="Password"

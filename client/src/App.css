@@ -230,7 +230,6 @@ input {
   padding: 0;
   display: grid;
   grid-template-columns: 10% 20% 20% 20% 20% 10%;
-  /* gap: 5%; */
 }
 
 .logout {
@@ -257,8 +256,6 @@ input {
   font-weight: 400;
   font-size: 1em;
   color: #808FB4;
-  /* padding: 0.45rem;
-  margin: 0 0.25rem; */
 }
 
 @media(max-width: 1000px) {
@@ -282,13 +279,6 @@ input {
 
 .nav-link {
   display: inline;
-}
-
-@media(max-width: 1000px) {
-  /* li {
-    text-align: left;
-    padding-right: 20px;
-  } */
 }
 
 
@@ -407,7 +397,6 @@ input {
 .maintenance-item-form {
   grid-column-start: 1;
   grid-column-end: 3;
-  /* padding: 0 10px 10px 10px; */
   padding-bottom: 10px;
   grid-row-start: 3;
   grid-row-end: 6;
@@ -499,10 +488,6 @@ input {
     padding: 5px;
     width: 30px;
   }
-
-  .maintenance-task {
-    /* font-size: .8em; */
-  }
 }
 
 @media(max-width: 880px) {
@@ -518,10 +503,6 @@ input {
 }
 
 @media(max-width: 768px) {
-  /* .maintenance-options {
-    margin: 0 5%;
-  } */
-
   .wrapper-1, .wrapper-2, .wrapper-3, .wrapper-4 {
     grid-column-start: 1;
     grid-column-end: 4;
@@ -594,10 +575,6 @@ input {
   box-shadow: 0px 2px 14px 2px rgba(0,0,0,0.09);
 }
 
-/* .pending-maintenance-item-expanded {
-  margin-bottom: 0;
-} */
-
 .pending-maintenance-task {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -666,37 +643,3 @@ input {
 .checkbox {
   margin: 0 5px 0 15px;
 }
-
-
-/* main {
-  align-items: center;
-  display: flex;
-  font-size: 18px;
-  height: 100vh;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  transform-style: preserve-3d;
-  perspective: 100px;
-}
-
-main:before {
-  background: linear-gradient(45deg, rgba(13, 13, 13, 0.575), rgba(6, 22, 93, 0.5)),
-      url(https://i.imgur.com/6pAnv87.jpg) no-repeat bottom;
-  background-size: cover;
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-} */
-
-
-/* * {
-  background: #000 !important;
-  color: #0f0 !important;
-  outline: solid #f00 1px !important;
-} */

@@ -13,13 +13,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
 
     const [hidden, setHidden] = useState(true);
     const [key, setKey] = useState(null);
-
-    // const [child, setChild] = React.useState(false);
-    // const handleChildState = React.useCallback(childState => {
-    //     setChild(childState);
-    //     console.log('childState:', childState)
-    // }, []);
-
+    
     function renderForm(e) {
         e.preventDefault();
         const key = e.currentTarget.parentNode.parentNode.parentNode.getAttribute("data-index");
@@ -49,7 +43,7 @@ const PendingMaintenance = ({ getPendingMaintenance, addCompletedMaintenance, au
                     <Link 
                     className="maintenance-options-link"
                     to="/maintenanceoptions"
-                    activeStyle={{
+                    activestyle={{
                     color: "#008CC5"
                     }}
                     >

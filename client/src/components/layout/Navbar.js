@@ -16,28 +16,7 @@ import logoutIcon from './img/logout.svg';
 
 
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  // const authLinks = (
-  //   <ul>
-  //     <li>
-  //       <Link to="/maintenance-options">
-  //       <i className="fas fa-user" alt=""></i>{' '}
-  //       <span className="hide-sm">Maintenance Options</span></Link>
-  //     </li>
-  //     <li>
-  //       <a onClick={logout} href="#!">
-  //         <i className="fas fa-sign-out-alt" alt=""></i>{' '}
-  //         <span className="hide-sm">Logout</span></a>
-  //     </li>
-  //   </ul>
-  // );
-
-  // const guestLinks = (
-  //   <ul>
-  //     <li><Link to="/register">Register</Link></li>
-  //     <li><Link to="/login">Login</Link></li>
-  //   </ul>
-  // );
+const Navbar = ({ logout }) => {
 
   const useTextNav = useMediaQuery({ query: '(min-width: 769px)' });
   const useIconNav = useMediaQuery({ query: '(max-width: 768px)' });
@@ -51,7 +30,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <li className="nav-link-1">
           <NavLink 
             to="/maintenanceoptions"
-            activeStyle={{
+            activestyle={{
               color: "#008CC5"
             }}
           >
@@ -69,7 +48,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <li className="nav-link-2">
           <NavLink 
             to="/account/pendingmaintenance"
-            activeStyle={{
+            activestyle={{
               color: "#008CC5"
             }}
             >
@@ -85,7 +64,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <li className="nav-link-3">
           <NavLink 
             to="/account/completedmaintenance"
-            activeStyle={{
+            activestyle={{
               color: "#008CC5"
             }}
             >
@@ -100,7 +79,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </li>
         <li>
           {useTextNav && <a onClick={logout} href="#!" className="logout">
-            {/* <i className="fas fa-sign-out-alt" alt=""></i>{' '} */}
             <span className="hide-sm">Logout</span>
           </a>}
           {useIconNav && <img 
@@ -109,7 +87,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             alt="logout-icon" />}
         </li>
       </ul>
-      {/* { !loading && (<Fragment>{ isAuthenticated ? authLinks: guestLinks }</Fragment>) } */}
     </nav>
     )
 }
