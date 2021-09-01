@@ -281,6 +281,15 @@ input {
   display: inline;
 }
 
+.nav-link-inactive {
+  display: inline;
+}
+
+.nav-link-active {
+  display: inline;
+  color: #008CC5;
+}
+
 
 
 /* MAINTENANCE OPTIONS */

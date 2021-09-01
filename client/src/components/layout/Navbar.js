@@ -28,53 +28,45 @@ const Navbar = ({ logout }) => {
     <nav className="navbar">
       <ul>
         <li className="nav-link-1">
-          <NavLink 
-            to="/maintenanceoptions"
-            activestyle={{
-              color: "#008CC5"
-            }}
-          >
-          {useTextNav && <div className="nav-link">Maintenance Options</div>}
+          <NavLink to="/maintenanceoptions">
+          {useTextNav && 
+            <div className={location === '/maintenanceoptions' ? 'nav-link-active' : 'nav-link-inactive'}>
+              Maintenance Options
+            </div>}
           {useIconNav && location === '/maintenanceoptions' && <img 
             src={maintenanceIconActive} 
-            className=""
             alt="active-icon" />}
           {useIconNav && location !== '/maintenanceoptions' && <img 
-          src={maintenanceIcon} 
-          className=""
-          alt="inactive-icon" />}
+            src={maintenanceIcon} 
+            alt="inactive-icon" />}
           </NavLink>
         </li>
         <li className="nav-link-2">
-          <NavLink 
-            to="/account/pendingmaintenance"
-            activestyle={{
-              color: "#008CC5"
-            }}
-            >
-            {useTextNav && <div className="nav-link">Pending Maintenance</div>}
-            {useIconNav && location === '/account/pendingmaintenance' && <img 
+          <NavLink to="/account/pendingmaintenance">
+          {useTextNav && 
+            <div className={location === '/account/pendingmaintenance' ? 'nav-link-active' : 'nav-link-inactive'}>
+              Pending Maintenance
+            </div>}
+          {useIconNav && location === '/account/pendingmaintenance' && <img 
             src={pendingActive} 
             alt="active-icon" />}
-            {useIconNav && location !== '/account/pendingmaintenance' && <img 
+          {useIconNav && location !== '/account/pendingmaintenance' && <img 
             src={pending} 
             alt="inactive-icon" />}
           </NavLink>
         </li>
         <li className="nav-link-3">
-          <NavLink 
-            to="/account/completedmaintenance"
-            activestyle={{
-              color: "#008CC5"
-            }}
-            >
-            {useTextNav && <div className="nav-link">Completed Maintenance</div>}
+          <NavLink to="/account/completedmaintenance">
+            {useTextNav && 
+              <div className={location === '/account/completedmaintenance' ? 'nav-link-active' : 'nav-link-inactive'}>
+                Completed Maintenance
+              </div>}
             {useIconNav && location === '/account/completedmaintenance' && <img 
-            src={completedActive} 
-            alt="active-icon" />}
+              src={completedActive} 
+              alt="active-icon" />}
             {useIconNav && location !== '/account/completedmaintenance' && <img 
-            src={completed} 
-            alt="inactive-icon" />}
+              src={completed} 
+              alt="inactive-icon" />}
           </NavLink>
         </li>
         <li>
