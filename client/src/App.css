@@ -63,7 +63,7 @@ body {
   grid-row-end: 6;
   grid-column-start: 2;
   grid-column-end: 4;
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .col-2 {
@@ -71,7 +71,7 @@ body {
   grid-row-end: 6;
   grid-column-start: 4;
   grid-column-end: 6;
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .col-1 > h1 {
