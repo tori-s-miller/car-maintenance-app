@@ -17,12 +17,6 @@ AutoLog's functionality includes:
 
 ---
 
-## APPLICATION WEBSITE ##
-
-View a working prototype here: (https://autolog-application.herokuapp.com/)
-
----
-
 ## SECURITY ##
 
 Application uses JWT authentication
