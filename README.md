@@ -1,4 +1,4 @@
-# Good Dog #
+# AUTOLOG #
 
 AutoLog is an application that gives you the ability to track car maintenance. With all your maintenance logged in one place, you’ll no longer be wondering when the last time you completed a maintenance task was or when your next task is due.
 
